@@ -19,12 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\cpp\Character.cpp" />
     <ClCompile Include="src\cpp\Game.cpp" />
+    <ClCompile Include="src\cpp\Map.cpp" />
     <ClCompile Include="src\cpp\Topo.cpp" />
-    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\header\Character.h" />
     <ClInclude Include="src\header\Game.h" />
+    <ClInclude Include="src\header\Map.h" />
     <ClInclude Include="src\header\Topo.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
