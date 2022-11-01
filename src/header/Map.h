@@ -2,6 +2,7 @@
 
 #include "Character.h"
 #include "Topo.h"
+#include "Obstacle.h"
 
 class Map
 {
@@ -12,6 +13,7 @@ private:
 	Rectangle map;
 	Color tint;
 	Character* player;
+	Obstacle* obs;
 
 public:
 	Map();

@@ -16,11 +16,13 @@ Map::Map()
 	tint = WHITE;
 
 	player = new Character(unit, map);
+	obs = new Obstacle(unit, map);
 }
 
 Map::~Map()
 {
 	delete player;
+	delete obs;
 }
 
 Vector2 Map::getSize()
@@ -57,19 +59,27 @@ void Map::update()
 
 	input();
 	player->update(unit, map);
+	obs->update(unit, map);
+
+	if (obs->isBehindPlayer())
+	{
+		delete obs;
+		obs = new Obstacle(unit, map);
+	}
 }
 
 void Map::draw()
 {
 	DrawRectangleRec(map, tint);
 	player->draw();
+	obs->draw();
 }
 
 void Map::input()
 {
 	if (IsKeyReleased(KEY_SPACE) || (IsKeyDown(KEY_SPACE) && jFMultiplier >= 2))
 	{
-		player->jump(jFMultiplier);
+		player->jump(jFMultiplier, unit);
 		jFMultiplier = 1;
 	}
 

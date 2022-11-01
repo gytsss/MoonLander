@@ -21,6 +21,6 @@ public:
 	void update(float unit, Rectangle map);
 	void draw();
 
-	void jump(float multiplier);
+	void jump(float multiplier, float unit);
 	void move(float unit);
 };
