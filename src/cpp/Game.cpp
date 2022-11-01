@@ -70,5 +70,7 @@ void Game::draw()
 
 	map->draw();
 
+	DrawFPS(5, 5);
+
 	EndDrawing();
 }

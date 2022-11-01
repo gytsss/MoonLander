@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Character.h"
 #include "Topo.h"
+#include "Character.h"
 #include "Obstacle.h"
+#include "Background.h"
 
 class Map
 {
@@ -14,6 +15,7 @@ private:
 	Color tint;
 	Character* player;
 	Obstacle* obs;
+	Background* bg;
 
 public:
 	Map();

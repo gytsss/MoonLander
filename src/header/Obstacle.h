@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Parallax.h"
 #include "Topo.h"
 
 class Obstacle
@@ -11,6 +12,7 @@ private:
 
 	Rectangle col;
 	Color tint;
+	Parallax* parallax;
 
 public:
 	Obstacle(float unit, Rectangle map);
@@ -20,4 +22,5 @@ public:
 	void draw();
 
 	bool isBehindPlayer();
+	void updateParallax(float unit, float playerYDif);
 };

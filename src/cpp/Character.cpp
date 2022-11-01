@@ -41,6 +41,11 @@ void Character::draw()
 	DrawRectangleRec(dest, tint);
 }
 
+float Character::getY()
+{
+	return dest.y;
+}
+
 void Character::jump(float multiplier, float unit)
 {
 	if (!inAir)

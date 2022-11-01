@@ -11,6 +11,7 @@ Obstacle::Obstacle(float unit, Rectangle map)
 	col.x = startX;
 	col.y = floorHeight - col.height;
 	tint = RED;
+	parallax = new Parallax(0);
 }
 
 Obstacle::~Obstacle()
@@ -37,4 +38,9 @@ void Obstacle::draw()
 bool Obstacle::isBehindPlayer()
 {
 	return col.x + col.width < 0;
+}
+
+void Obstacle::updateParallax(float unit, float playerYDif)
+{
+	parallax->update(unit, col.y, playerYDif);
 }

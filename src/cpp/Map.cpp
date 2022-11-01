@@ -17,6 +17,7 @@ Map::Map()
 
 	player = new Character(unit, map);
 	obs = new Obstacle(unit, map);
+	bg = new Background(map);
 }
 
 Map::~Map()
@@ -52,6 +53,8 @@ void Map::update()
 
 	unit = screenWidth / 160;
 
+	float playerYDif = player->getY();
+
 	map.width = screenWidth;
 	map.height = 90 * unit;
 	map.x = 0;
@@ -60,6 +63,12 @@ void Map::update()
 	input();
 	player->update(unit, map);
 	obs->update(unit, map);
+	bg->update(unit, map);
+
+	playerYDif = player->getY() - playerYDif;
+
+	obs->updateParallax(unit, playerYDif);
+	bg->updateParallax(unit, playerYDif);
 
 	if (obs->isBehindPlayer())
 	{
@@ -71,6 +80,7 @@ void Map::update()
 void Map::draw()
 {
 	DrawRectangleRec(map, tint);
+	bg->draw();
 	player->draw();
 	obs->draw();
 }
