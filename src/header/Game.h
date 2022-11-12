@@ -3,30 +3,33 @@
 #include "Map.h"
 #include "Topo.h"
 
-class Game
+namespace Topo
 {
-	enum Scenes
+	class Game
 	{
-		Exit,
-		Play,
-		MainMenu,
-		Credits,
+		enum Scenes
+		{
+			Exit,
+			Play,
+			MainMenu,
+			Credits,
+		};
+
+	private:
+		bool isPlaying;
+
+		Map* map;
+		Scenes scenes;
+
+	public:
+		Game();
+		~Game();
+
+		void loop();
+		void play();
+
+		void begin();
+		void update();
+		void draw();
 	};
-
-private:
-	bool isPlaying;
-
-	Map* map;
-	Scenes scenes;
-
-public:
-	Game();
-	~Game();
-
-	void loop();
-	void play();
-
-	void begin();
-	void update();
-	void draw();
-};
+}

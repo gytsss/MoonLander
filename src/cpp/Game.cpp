@@ -1,76 +1,83 @@
 #include "Game.h"
 
-Game::Game()
+namespace Topo
 {
-	isPlaying = false;
-	scenes = MainMenu;
-	map = new Map();
-}
-
-Game::~Game()
-{
-	delete map;
-}
-
-void Game::loop()
-{
-	do
+	Game::Game()
 	{
-		switch (scenes)
+		isPlaying = false;
+		scenes = MainMenu;
+		map = new Map();
+	}
+
+	Game::~Game()
+	{
+		delete map;
+	}
+
+	void Game::loop()
+	{
+		do
 		{
-		case Exit: break;
+			switch (scenes)
+			{
+			case Exit: break;
 
-		case Play:
-			play();
-			break;
+			case Play:
+				play();
+				break;
 
-		case MainMenu:
-			scenes = Play;
-			break;
+			case MainMenu:
+				scenes = Play;
+				break;
 
-		case Credits: break;
+			case Credits: break;
 
-		default:;
-		}
+			default:;
+			}
 
-		if (WindowShouldClose())
-			scenes = Exit;
-			
-	} while (scenes != Exit);
-}
+			if (WindowShouldClose())
+				scenes = Exit;
 
-void Game::play()
-{
-	// Begin
-	if (!isPlaying)
-		begin();
+		} while (scenes != Exit);
+	}
 
-	// Update
-	update();
+	void Game::play()
+	{
+		// Begin
+		if (!isPlaying)
+			begin();
 
-	// Draw
-	draw();
-}
+		// Update
+		update();
 
-void Game::begin()
-{
-	isPlaying = true;
-}
+		// Draw
+		draw();
+	}
 
-void Game::update()
-{
-	map->update();
-}
+	void Game::begin()
+	{
+		isPlaying = true;
+	}
 
-void Game::draw()
-{
-	BeginDrawing();
+	void Game::update()
+	{
+		map->update();
+	}
 
-	ClearBackground(BLACK);
+	void Game::draw()
+	{
+		BeginDrawing();
 
-	map->draw();
+		ClearBackground(BLACK);
 
-	DrawFPS(5, 5);
+		map->draw();
 
-	EndDrawing();
+		DrawRectangle(0, 0, GetScreenWidth(), static_cast<int>(map->getPosY()), BLACK);
+		DrawRectangle(0, static_cast<int>(map->getPosY() + map->getHeight()),
+			GetScreenWidth(), static_cast<int>(map->getPosY()), BLACK);
+
+		DrawFPS(5, 5);
+
+		EndDrawing();
+	}
 }

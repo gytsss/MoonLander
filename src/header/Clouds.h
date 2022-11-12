@@ -1,11 +1,10 @@
 #pragma once
-
 #include "Parallax.h"
 #include "Topo.h"
 
 namespace Topo
 {
-	class Background
+	class Clouds
 	{
 	private:
 		float zoom;
@@ -17,8 +16,8 @@ namespace Topo
 		Color tint;
 
 	public:
-		Background(Rectangle map);
-		~Background();
+		Clouds(Rectangle map);
+		~Clouds();
 
 		void draw();
 		void update(float unit, Rectangle map);

@@ -4,30 +4,39 @@
 #include "Character.h"
 #include "Obstacle.h"
 #include "Background.h"
+#include "Clouds.h"
 
-class Map
+namespace Topo
 {
-private:
-	float unit;
-	float jFMultiplier;
+	class Clouds;
 
-	Rectangle map;
-	Color tint;
-	Character* player;
-	Obstacle* obs;
-	Background* bg;
+	class Map
+	{
+	private:
+		float unit;
+		float jFMultiplier;
 
-public:
-	Map();
-	~Map();
+		Rectangle map;
+		Color tint;
+		Character* player;
+		Obstacle* obs;
+		Background* bg;
+		Clouds* clouds;
 
-	Vector2 getSize();
-	float getPosY();
-	float getHeight();
-	float getWidth();
+	public:
+		Map();
+		~Map();
 
-	void update();
-	void draw();
+		Vector2 getSize();
+		float getPosY();
+		float getHeight();
+		float getWidth();
 
-	void input();
-};
+		void update();
+		void draw();
+
+		void input();
+
+		void checkCollisions();
+	};
+}

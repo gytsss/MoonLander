@@ -2,27 +2,37 @@
 
 #include "Topo.h"
 
-class Character
+namespace Topo
 {
-private:
-	float floorHeight;
-	bool inAir;
-	float velocity;
-	float jumpForce;
-	float grav;
-	
-	Rectangle dest;
-	Color tint;
+	class Character
+	{
+	private:
+		float ghostTime;
+		float flickerTime;
+		float floorHeight;
+		bool inAir;
+		float velocity;
+		float jumpForce;
+		float grav;
+		bool ghost;
+		float ghostCounter;
+		float flickerCounter;
 
-public:
-	Character(float unit, Rectangle map);
-	~Character();
+		Rectangle dest;
+		Color tint;
 
-	void update(float unit, Rectangle map);
-	void draw();
+	public:
+		Character(float unit, Rectangle map);
+		~Character();
 
-	float getY();
+		void update(float unit, Rectangle map);
+		void draw();
 
-	void jump(float multiplier, float unit);
-	void move(float unit);
-};
+		float getY();
+		Rectangle getDest();
+
+		void jump(float multiplier, float unit);
+		void move(float unit);
+		void flicker();
+	};
+}

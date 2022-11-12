@@ -1,12 +1,15 @@
 #pragma once
-class Parallax
+namespace Topo
 {
-private:
-	int layer;
+	class Parallax
+	{
+	private:
+		int layer;
 
-public:
-	Parallax(int layer);
-	~Parallax();
+	public:
+		Parallax(int layer);
+		~Parallax();
 
-	void update(float unit, float& y, float playerYDif);
-};
+		void update(float unit, float& y, float playerYDif);
+	};
+}

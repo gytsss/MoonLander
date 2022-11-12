@@ -15,6 +15,17 @@ bool circlesCollide(Circle cir1, Circle cir2)
 	return false;
 }
 
+bool rectanglesCollide(Rectangle rec1, Rectangle rec2)
+{
+	Vector2 a1 = { rec1.x, rec1.y };
+	Vector2 a2 = { rec1.x + rec1.width, rec1.y + rec1.height };
+
+	Vector2 b1 = { rec2.x, rec2.y };
+	Vector2 b2 = { rec2.x + rec2.width, rec2.y + rec2.height };
+
+	return (a1.x <= b2.x && b1.x <= a2.x && a1.y <= b2.y && b1.y <= a2.y);
+}
+
 Vector2 getCirclesCollisionPos(Circle circ1, Circle circ2)
 {
 	Vector2 midPoint;
@@ -43,12 +54,15 @@ Vector2 getRecsCollisionPos(Rectangle rec1, Rectangle rec2)
 	// Up collision
 	if (upOffset > downOffset && upOffset > leftOffset && upOffset > rightOffset)
 		return { (b2.x + a1.x) / 2, b1.y };
+
 	// Down collision
 	if (downOffset > upOffset && downOffset > leftOffset && downOffset > rightOffset)
 		return { (b2.x + a1.x) / 2, b2.y };
+
 	// Left collision
 	if (rightOffset > upOffset && rightOffset > downOffset && rightOffset > leftOffset)
 		return { b1.x, (b2.y + a1.y) / 2 };
+
 	// Right collision
 	if (leftOffset > upOffset && leftOffset > downOffset && leftOffset > rightOffset)
 		return { b2.x, (b2.y + a1.y) / 2 };

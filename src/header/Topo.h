@@ -38,6 +38,7 @@ struct Ball
 void drawLine(Line line, Color color);
 void drawCircleCir(Circle circle, Color color);
 bool circlesCollide(Circle cir1, Circle cir2);
+bool rectanglesCollide(Rectangle rec1, Rectangle rec2);
 Vector2 getCirclesCollisionPos(Circle circ1, Circle circ2);
 Vector2 getRecsCollisionPos(Rectangle rec1, Rectangle rec2);
 float getLength(Line segment);

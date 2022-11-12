@@ -1,15 +1,18 @@
 #include "Parallax.h"
 
-Parallax::Parallax(int layer)
+namespace Topo
 {
-	this->layer = layer;
-}
+	Parallax::Parallax(int layer)
+	{
+		this->layer = layer;
+	}
 
-Parallax::~Parallax()
-{
-}
+	Parallax::~Parallax()
+	{
+	}
 
-void Parallax::update(float unit, float& y, float playerYDif)
-{
-	y += playerYDif * static_cast<float>(layer) / 8;
+	void Parallax::update(float unit, float& y, float playerYDif)
+	{
+		y += playerYDif * static_cast<float>(layer) / 8;
+	}
 }

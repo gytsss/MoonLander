@@ -3,24 +3,29 @@
 #include "Parallax.h"
 #include "Topo.h"
 
-class Obstacle
+namespace Topo
 {
-private:
-	float floorHeight;
-	float speed;
-	float startX;
+	class Obstacle
+	{
+	private:
+		float floorHeight;
+		float speed;
+		float startX;
 
-	Rectangle col;
-	Color tint;
-	Parallax* parallax;
+		Rectangle col;
+		Color tint;
+		Parallax* parallax;
 
-public:
-	Obstacle(float unit, Rectangle map);
-	~Obstacle();
+	public:
+		Obstacle(float unit, Rectangle map);
+		~Obstacle();
 
-	void update(float unit, Rectangle map);
-	void draw();
+		void update(float unit, Rectangle map);
+		void draw();
 
-	bool isBehindPlayer();
-	void updateParallax(float unit, float playerYDif);
-};
+		Rectangle getCol();
+
+		bool isBehindPlayer();
+		void updateParallax(float unit, float playerYDif);
+	};
+}
