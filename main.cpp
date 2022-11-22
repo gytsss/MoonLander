@@ -24,6 +24,6 @@ void defaults()
 	//system(".Init.bat");
 	srand(time(nullptr));
 	SetWindowState(FLAG_WINDOW_RESIZABLE);
-	InitWindow(1280, 1000, "Moon Patrol 0.1 - Topo");
+	InitWindow(1280, 1000, "Moon Patrol 0.1");
 	SetTargetFPS(60);
 }
