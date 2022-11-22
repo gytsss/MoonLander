@@ -22,6 +22,8 @@ namespace Topo
 				scenes = Play;
 			else if (scenes == MainMenu && IsKeyPressed(KEY_C))
 				scenes = Credits;
+			else if (scenes == Credits && IsKeyPressed(KEY_BACKSPACE))
+				scenes = MainMenu;
 
 			switch (scenes)
 			{
