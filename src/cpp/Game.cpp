@@ -5,7 +5,7 @@ namespace Topo
 	Game::Game()
 	{
 		isPlaying = false;
-		scenes = Play;
+		scenes = MainMenu;
 		map = new Map();
 	}
 
@@ -18,6 +18,11 @@ namespace Topo
 	{
 		do
 		{
+			if (scenes == MainMenu && IsKeyPressed(KEY_E))
+				scenes = Play;
+			else if (scenes == MainMenu && IsKeyPressed(KEY_C))
+				scenes = Credits;
+
 			switch (scenes)
 			{
 			case Exit: break;
@@ -30,7 +35,8 @@ namespace Topo
 				menu();
 				break;
 
-			case Credits: 
+			case Credits:
+				credits();
 				break;
 
 			default:;
@@ -104,6 +110,13 @@ namespace Topo
 				break;
 
 			case Credits:
+				BeginDrawing();
+				ClearBackground(BLACK);
+
+				DrawText("Topo Fabbri and", GetScreenWidth() / 2 - 80, GetScreenHeight() / 2, 50, RED);
+				DrawText("Godoy Tobias", GetScreenWidth() / 2 - 80, 600, 50, RED);
+
+				EndDrawing();
 				break;
 
 			default:;
@@ -116,4 +129,10 @@ namespace Topo
 
 		
 	}
+
+	void Game::credits()
+	{
+		draw();
+	}
 }
+

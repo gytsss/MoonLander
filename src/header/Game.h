@@ -28,6 +28,7 @@ namespace Topo
 		void loop();
 		void play();
 		void menu();
+		void credits();
 
 		void begin();
 		void update();
