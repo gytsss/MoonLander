@@ -137,7 +137,7 @@ namespace Topo
 		}
 
 
-		bullets[currentBullets]->setActive(true);
+		bullets[currentBullets]->setActive(true, dest.x + dest.width / 4 , dest.y);
 
 		currentBullets++;
 

@@ -41,12 +41,11 @@ namespace Topo
 	{
 		return isActive;
 	}
-	void Bullet::setActive(bool isActive)
+	void Bullet::setActive(bool isActive, float x, float y)
 	{
 		this->isActive = isActive;
+		this->x = x;
+		this->y = y;
 	}
-	void Bullet::resetPosition()
-	{
-		
-	}
+	
 }

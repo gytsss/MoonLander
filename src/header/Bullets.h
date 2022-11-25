@@ -23,8 +23,8 @@ namespace Topo
 		void draw();
 		void update();
 		bool getActive();
-		void setActive(bool isActive);
-		void resetPosition();
+		void setActive(bool isActive, float x, float y);
+		
 
 	};
 }
