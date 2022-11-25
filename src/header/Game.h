@@ -3,6 +3,8 @@
 #include "Map.h"
 #include "Topo.h"
 
+
+
 namespace Topo
 {
 	class Game
@@ -12,7 +14,7 @@ namespace Topo
 			Exit,
 			Play,
 			MainMenu,
-			Credits,
+			Credits
 		};
 
 	private:

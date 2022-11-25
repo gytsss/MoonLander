@@ -5,6 +5,7 @@
 #include "Obstacle.h"
 #include "Background.h"
 #include "Clouds.h"
+#include "Bullets.h"
 
 namespace Topo
 {
@@ -22,6 +23,7 @@ namespace Topo
 		Obstacle* obs;
 		Background* bg;
 		Clouds* clouds;
+	
 
 	public:
 		Map();

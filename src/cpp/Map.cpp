@@ -17,6 +17,7 @@ namespace Topo
 
 		tint = { 185, 235, 255,255 };
 
+
 		player = new Character(unit, map);
 		obs = new Obstacle(unit, map);
 		bg = new Background(map);
@@ -71,6 +72,8 @@ namespace Topo
 		obs->update(unit, map);
 		bg->update(unit, map);
 		clouds->update(unit, map);
+		
+
 
 		playerYDif = player->getY() - playerYDif;
 
@@ -92,6 +95,8 @@ namespace Topo
 		bg->draw();
 		player->draw();
 		obs->draw();
+
+		
 	}
 
 	void Map::input()
@@ -104,11 +109,18 @@ namespace Topo
 
 		if (IsKeyDown(KEY_SPACE))
 			jFMultiplier += GetFrameTime() * 2;
+
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			player->shoot();
+
+		
 	}
 
 	void Map::checkCollisions()
 	{
 		if (rectanglesCollide(player->getDest(), obs->getCol()))
 			player->flicker();
+
+		
 	}
 }

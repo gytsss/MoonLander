@@ -1,5 +1,6 @@
 #include "Character.h"
 
+
 namespace Topo
 {
 	Character::Character(float unit, Rectangle map)
@@ -14,6 +15,7 @@ namespace Topo
 		ghost = false;
 		ghostCounter = ghostTime;
 		flickerCounter = flickerTime;
+		currentBullets = 0;
 
 		dest.width = 10 * unit;
 		dest.height = 10 * unit;
@@ -21,10 +23,21 @@ namespace Topo
 		dest.y = floorHeight;
 
 		tint = WHITE;
+
+		for (int i = 0; i < maxBullets; i++)
+		{
+			bullets[i] = new Bullet(dest.x, dest.y);
+
+		}
 	}
 
 	Character::~Character()
 	{
+		for (int i = 0; i < maxBullets; i++)
+		{
+			delete bullets[i];
+		}
+
 	}
 
 	void Character::update(float unit, Rectangle map)
@@ -53,15 +66,31 @@ namespace Topo
 			ghost = false;
 			tint.a = 255;
 		}
+
+		for (int i = 0; i < maxBullets; i++)
+		{
+			bullets[i]->update();
+		}
 	}
 
 	void Character::draw()
 	{
 		DrawRectangleRec(dest, tint);
+		for (int i = 0; i < maxBullets; i++)
+		{
+			bullets[i]->draw();
+		}
+	}
+
+	float Character::getX()
+	{
+
+		return dest.x;
 	}
 
 	float Character::getY()
 	{
+
 		return dest.y;
 	}
 
@@ -98,5 +127,19 @@ namespace Topo
 	{
 		ghostCounter = ghostTime;
 		ghost = true;
+	}
+
+	void Character::shoot()
+	{
+		if (currentBullets >= maxBullets)
+		{
+			currentBullets = 0;
+		}
+
+
+		bullets[currentBullets]->setActive(true);
+
+		currentBullets++;
+
 	}
 }

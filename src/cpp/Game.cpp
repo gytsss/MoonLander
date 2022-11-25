@@ -18,9 +18,11 @@ namespace Topo
 	{
 		do
 		{
-			if (scenes == MainMenu && IsKeyPressed(KEY_E))
+			if (scenes == MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) }, 100) &&
+				IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 				scenes = Play;
-			else if (scenes == MainMenu && IsKeyPressed(KEY_C))
+			else if (scenes == MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 1.3) }, 100) && 
+				IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 				scenes = Credits;
 			else if (scenes == Credits && IsKeyPressed(KEY_BACKSPACE))
 				scenes = MainMenu;
@@ -80,56 +82,60 @@ namespace Topo
 
 	void Game::draw()
 	{
-		
-			switch (scenes)
-			{
-			case Exit:
-				
-				break;
+		float titleLenght = MeasureText("Moon Patrol", 50);
 
-			case Play:
-				BeginDrawing();
-				ClearBackground(BLACK);
+		switch (scenes)
+		{
+		case Exit:
 
-				map->draw();
+			break;
 
-				DrawRectangle(0, 0, GetScreenWidth(), static_cast<int>(map->getPosY()), BLACK);
-				DrawRectangle(0, static_cast<int>(map->getPosY() + map->getHeight()),
-					GetScreenWidth(), static_cast<int>(map->getPosY()), BLACK);
+		case Play:
+			BeginDrawing();
+			ClearBackground(BLACK);
 
-				DrawFPS(5, 5); 
-				EndDrawing();
-				break;
+			map->draw();
 
-			case MainMenu:
-				BeginDrawing();
-				ClearBackground(BLACK);
+			DrawRectangle(0, 0, GetScreenWidth(), static_cast<int>(map->getPosY()), BLACK);
+			DrawRectangle(0, static_cast<int>(map->getPosY() + map->getHeight()), GetScreenWidth(), static_cast<int>(map->getPosY()), BLACK);
 
-				DrawText("Press E to start...", GetScreenWidth() / 2  - 80, GetScreenHeight() / 2, 50, RED);
-				DrawText("Press C to see credits...", GetScreenWidth() / 2 - 80, 600, 50, RED);
 
-				EndDrawing();
-				break;
+			DrawFPS(5, 5);
+			EndDrawing();
+			break;
 
-			case Credits:
-				BeginDrawing();
-				ClearBackground(BLACK);
+		case MainMenu:
+			BeginDrawing();
+			ClearBackground(BLACK);
 
-				DrawText("Topo Fabbri and", GetScreenWidth() / 2 - 80, GetScreenHeight() / 2, 50, RED);
-				DrawText("Godoy Tobias", GetScreenWidth() / 2 - 80, 600, 50, RED);
+			
 
-				EndDrawing();
-				break;
+			DrawText("Moon patrol", GetScreenWidth() / 2 - titleLenght / 2, GetScreenHeight() / 4, 50, RED);
+			DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, 100, RED);
+			DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 1.3, 100, BLUE);
 
-			default:;
-			}
+			EndDrawing();
+			break;
 
-			if (WindowShouldClose())
-				scenes = Exit;
+		case Credits:
+			BeginDrawing();
+			ClearBackground(BLACK);
 
-		
+			DrawText("Topo Fabbri and", GetScreenWidth() / 2 - 80, GetScreenHeight() / 2, 50, RED);
+			DrawText("Godoy Tobias", GetScreenWidth() / 2 - 80, 600, 50, RED);
 
-		
+			EndDrawing();
+			break;
+
+		default:;
+		}
+
+		if (WindowShouldClose())
+			scenes = Exit;
+
+
+
+
 	}
 
 	void Game::credits()

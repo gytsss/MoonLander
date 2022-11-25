@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\cpp\Background.cpp" />
+    <ClCompile Include="src\cpp\Bullets.cpp" />
     <ClCompile Include="src\cpp\Character.cpp" />
     <ClCompile Include="src\cpp\Clouds.cpp" />
     <ClCompile Include="src\cpp\Game.cpp" />
@@ -31,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\header\Background.h" />
+    <ClInclude Include="src\header\Bullets.h" />
     <ClInclude Include="src\header\Character.h" />
     <ClInclude Include="src\header\Clouds.h" />
     <ClInclude Include="src\header\Game.h" />

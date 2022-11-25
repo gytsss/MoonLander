@@ -2,6 +2,8 @@
 
 #include "Topo.h"
 
+#include "Bullets.h"
+
 namespace Topo
 {
 	class Character
@@ -17,9 +19,11 @@ namespace Topo
 		bool ghost;
 		float ghostCounter;
 		float flickerCounter;
+		int currentBullets;
 
 		Rectangle dest;
 		Color tint;
+		Bullet* bullets[maxBullets];
 
 	public:
 		Character(float unit, Rectangle map);
@@ -28,11 +32,13 @@ namespace Topo
 		void update(float unit, Rectangle map);
 		void draw();
 
+		float getX();
 		float getY();
 		Rectangle getDest();
 
 		void jump(float multiplier, float unit);
 		void move(float unit);
 		void flicker();
+		void shoot();
 	};
 }
