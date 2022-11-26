@@ -20,6 +20,7 @@ namespace Topo
 		float ghostCounter;
 		float flickerCounter;
 		int currentBullets;
+		float score;
 
 		Rectangle dest;
 		Color tint;
@@ -40,5 +41,6 @@ namespace Topo
 		void move(float unit);
 		void flicker();
 		void shoot();
+		void increaseScore(float score);
 	};
 }

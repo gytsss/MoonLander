@@ -21,7 +21,7 @@ namespace Topo
 		~Bullet();
 
 		void draw();
-		void update();
+		void update(float unit);
 		bool getActive();
 		void setActive(bool isActive, float x, float y);
 		

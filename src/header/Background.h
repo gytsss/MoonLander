@@ -22,6 +22,6 @@ namespace Topo
 
 		void draw();
 		void update(float unit, Rectangle map);
-		void updateParallax(float unit, float playerYDif);
+		void updateParallax( float playerYDif);
 	};
 }

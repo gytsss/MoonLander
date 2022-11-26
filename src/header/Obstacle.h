@@ -26,6 +26,6 @@ namespace Topo
 		Rectangle getCol();
 
 		bool isBehindPlayer();
-		void updateParallax(float unit, float playerYDif);
+		void updateParallax( float playerYDif);
 	};
 }

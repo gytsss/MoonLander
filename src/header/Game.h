@@ -9,7 +9,7 @@ namespace Topo
 {
 	class Game
 	{
-		enum Scenes
+		enum class Scenes
 		{
 			Exit,
 			Play,

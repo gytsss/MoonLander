@@ -9,7 +9,6 @@
 
 namespace Topo
 {
-	class Clouds;
 
 	class Map
 	{
@@ -33,6 +32,7 @@ namespace Topo
 		float getPosY();
 		float getHeight();
 		float getWidth();
+		float getUnit();
 
 		void update();
 		void draw();

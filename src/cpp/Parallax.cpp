@@ -11,7 +11,7 @@ namespace Topo
 	{
 	}
 
-	void Parallax::update(float unit, float& y, float playerYDif)
+	void Parallax::update( float& y, float playerYDif)
 	{
 		y += playerYDif * static_cast<float>(layer) / 8;
 	}

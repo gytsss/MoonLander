@@ -5,7 +5,7 @@ namespace Topo
 	Game::Game()
 	{
 		isPlaying = false;
-		scenes = MainMenu;
+		scenes = Scenes::MainMenu;
 		map = new Map();
 	}
 
@@ -18,28 +18,28 @@ namespace Topo
 	{
 		do
 		{
-			if (scenes == MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) }, 100) &&
+			if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) }, 15 * map->getUnit()) &&
 				IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-				scenes = Play;
-			else if (scenes == MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 1.3) }, 100) && 
+				scenes = Scenes::Play;
+			else if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 1.3) }, 15 * map->getUnit()) &&
 				IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-				scenes = Credits;
-			else if (scenes == Credits && IsKeyPressed(KEY_BACKSPACE))
-				scenes = MainMenu;
+				scenes = Scenes::Credits;
+			else if (scenes == Scenes::Credits && IsKeyPressed(KEY_BACKSPACE))
+				scenes = Scenes::MainMenu;
 
 			switch (scenes)
 			{
-			case Exit: break;
+			case Scenes::Exit: break;
 
-			case Play:
+			case Scenes::Play:
 				play();
 				break;
 
-			case MainMenu:
+			case Scenes::MainMenu:
 				menu();
 				break;
 
-			case Credits:
+			case Scenes::Credits:
 				credits();
 				break;
 
@@ -47,9 +47,9 @@ namespace Topo
 			}
 
 			if (WindowShouldClose())
-				scenes = Exit;
+				scenes = Scenes::Exit;
 
-		} while (scenes != Exit);
+		} while (scenes != Scenes::Exit);
 	}
 
 	void Game::play()
@@ -82,15 +82,15 @@ namespace Topo
 
 	void Game::draw()
 	{
-		float titleLenght = MeasureText("Moon Patrol", 50);
+		float titleLenght = static_cast<float>(MeasureText("Moon Patrol", 50));
 
 		switch (scenes)
 		{
-		case Exit:
+		case Scenes::Exit:
 
 			break;
 
-		case Play:
+		case Scenes::Play:
 			BeginDrawing();
 			ClearBackground(BLACK);
 
@@ -104,25 +104,25 @@ namespace Topo
 			EndDrawing();
 			break;
 
-		case MainMenu:
+		case Scenes::MainMenu:
 			BeginDrawing();
 			ClearBackground(BLACK);
 
 			
 
-			DrawText("Moon patrol", GetScreenWidth() / 2 - titleLenght / 2, GetScreenHeight() / 4, 50, RED);
-			DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, 100, RED);
-			DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 1.3, 100, BLUE);
+			DrawText("Moon patrol",static_cast<int>(GetScreenWidth() / 2 - titleLenght / 2), GetScreenHeight() / 4, 50, RED);
+			DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, 15 * map->getUnit(), RED);
+			DrawCircleLines(GetScreenWidth() / 2, static_cast<int>(GetScreenHeight() / 1.3), 15 * map->getUnit(), BLUE);
 
 			EndDrawing();
 			break;
 
-		case Credits:
+		case Scenes::Credits:
 			BeginDrawing();
 			ClearBackground(BLACK);
 
-			DrawText("Topo Fabbri and", GetScreenWidth() / 2 - 80, GetScreenHeight() / 2, 50, RED);
-			DrawText("Godoy Tobias", GetScreenWidth() / 2 - 80, 600, 50, RED);
+			DrawText("Topo Fabbri and", GetScreenWidth() / 2 - 80, GetScreenHeight() / 2, static_cast < int>(5 * map->getUnit()), RED);
+			DrawText("Godoy Tobias", GetScreenWidth() / 2 - 80, 600, static_cast < int>( 5 * map->getUnit()), RED);
 
 			EndDrawing();
 			break;
@@ -131,7 +131,7 @@ namespace Topo
 		}
 
 		if (WindowShouldClose())
-			scenes = Exit;
+			scenes = Scenes::Exit;
 
 
 

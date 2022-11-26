@@ -47,8 +47,8 @@ namespace Topo
 		return col.x + col.width < 0;
 	}
 
-	void Obstacle::updateParallax(float unit, float playerYDif)
+	void Obstacle::updateParallax( float playerYDif)
 	{
-		parallax->update(unit, col.y, playerYDif);
+		parallax->update( col.y, playerYDif);
 	}
 }

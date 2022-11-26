@@ -16,6 +16,7 @@ namespace Topo
 		ghostCounter = ghostTime;
 		flickerCounter = flickerTime;
 		currentBullets = 0;
+		score = 0;
 
 		dest.width = 10 * unit;
 		dest.height = 10 * unit;
@@ -69,7 +70,7 @@ namespace Topo
 
 		for (int i = 0; i < maxBullets; i++)
 		{
-			bullets[i]->update();
+			bullets[i]->update(unit);
 		}
 	}
 
@@ -131,15 +132,19 @@ namespace Topo
 
 	void Character::shoot()
 	{
+		
 		if (currentBullets >= maxBullets)
 		{
 			currentBullets = 0;
 		}
-
+		
 
 		bullets[currentBullets]->setActive(true, dest.x + dest.width / 4 , dest.y);
-
 		currentBullets++;
 
+	}
+	void Character::increaseScore(float scoreToIncrease)
+	{
+		this->score += scoreToIncrease;
 	}
 }

@@ -57,11 +57,11 @@ namespace Topo
 		}
 	}
 
-	void Clouds::updateParallax(float unit, float playerYDif)
+	void Clouds::updateParallax( float playerYDif)
 	{
 		for (int i = 0; i < 2; i++)
 		{
-			parallax->update(unit, dest[i].y, playerYDif);
+			parallax->update(dest[i].y, playerYDif);
 		}
 	}
 }

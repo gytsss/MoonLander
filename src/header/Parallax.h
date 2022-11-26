@@ -10,6 +10,6 @@ namespace Topo
 		Parallax(int layer);
 		~Parallax();
 
-		void update(float unit, float& y, float playerYDif);
+		void update(float& y, float playerYDif);
 	};
 }

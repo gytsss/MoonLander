@@ -6,9 +6,10 @@
 void runProgram();
 void defaults();
 
-void main()
+int main()
 {
 	runProgram();
+	return 0;
 }
 
 void runProgram()
@@ -22,7 +23,7 @@ void runProgram()
 void defaults()
 {
 	//system(".Init.bat");
-	srand(time(nullptr));
+	srand(static_cast<unsigned int>(time(nullptr)));
 	SetWindowState(FLAG_WINDOW_RESIZABLE);
 	InitWindow(1280, 1000, "Moon Patrol 0.3");
 	SetTargetFPS(60);

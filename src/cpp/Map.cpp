@@ -50,6 +50,11 @@ namespace Topo
 		return map.width;
 	}
 
+	float Map::getUnit()
+	{
+		return unit;
+	}
+
 	void Map::update()
 	{
 		const float screenWidth = static_cast<float>(GetScreenWidth());
@@ -63,7 +68,8 @@ namespace Topo
 		map.height = 90 * unit;
 		map.x = 0;
 		map.y = screenHeight / 2 - map.height / 2;
-
+		
+		
 		input();
 
 		checkCollisions();
@@ -77,9 +83,9 @@ namespace Topo
 
 		playerYDif = player->getY() - playerYDif;
 
-		obs->updateParallax(unit, playerYDif);
-		bg->updateParallax(unit, playerYDif);
-		clouds->updateParallax(unit, playerYDif);
+		obs->updateParallax( playerYDif);
+		bg->updateParallax( playerYDif);
+		clouds->updateParallax( playerYDif);
 
 		if (obs->isBehindPlayer())
 		{
@@ -110,6 +116,7 @@ namespace Topo
 		if (IsKeyDown(KEY_SPACE))
 			jFMultiplier += GetFrameTime() * 2;
 
+		
 		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 			player->shoot();
 

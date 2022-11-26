@@ -11,8 +11,8 @@ namespace Topo
 		isActive = false;
 
 
-		speed.x = 50;
-		speed.y = 200;
+		speed.x = 20;
+		speed.y = 70;
 
 	}
 
@@ -25,27 +25,27 @@ namespace Topo
 		if (isActive)
 		{
 			DrawCircle(static_cast<int>(x), static_cast<int>(y), radius, RED);
-
 		}
 	}
 
-	void Bullet::update()
+	void Bullet::update(float unit)
 	{
 		if (isActive)
 		{
-			x += speed.x * GetFrameTime();
-			y -= speed.y * GetFrameTime();
+			x += speed.x * unit * GetFrameTime();
+			y -= speed.y * unit * GetFrameTime();
 		}
 	}
 	bool Bullet::getActive()
 	{
 		return isActive;
 	}
-	void Bullet::setActive(bool isActive, float x, float y)
+
+	void Bullet::setActive(bool active, float posX, float posY)
 	{
-		this->isActive = isActive;
-		this->x = x;
-		this->y = y;
+		this->isActive = active;
+		this->x = posX;
+		this->y = posY;
 	}
 	
 }
