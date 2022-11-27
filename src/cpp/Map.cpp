@@ -8,7 +8,6 @@ namespace Topo
 		const float screenHeight = static_cast<float>(GetScreenHeight());
 
 		unit = screenWidth / 160;
-		jFMultiplier = 1;
 
 		map.width = screenWidth;
 		map.height = 90 * unit;
@@ -57,7 +56,7 @@ namespace Topo
 		return unit;
 	}
 
-	void Map::update()
+	void Map::update(Scenes activeScene)
 	{
 		const float screenWidth = static_cast<float>(GetScreenWidth());
 		const float screenHeight = static_cast<float>(GetScreenHeight());
@@ -71,8 +70,10 @@ namespace Topo
 		map.x = 0;
 		map.y = screenHeight / 2 - map.height / 2;
 
-
-		input();
+		if (activeScene == Scenes::Play)
+		{
+			input();
+		}
 
 		checkCollisions();
 
@@ -81,7 +82,6 @@ namespace Topo
 		flyEnemy->update(unit);
 		bg->update(unit, map);
 		clouds->update(unit, map);
-
 
 
 		playerYDif = player->getY() - playerYDif;
@@ -104,11 +104,12 @@ namespace Topo
 		}
 	}
 
+
 	void Map::draw()
 	{
 		DrawRectangleRec(map, tint);
-			clouds->draw();
-			bg->draw();
+		clouds->draw();
+		bg->draw();
 		player->draw();
 		obs->draw();
 		flyEnemy->draw();
@@ -118,19 +119,12 @@ namespace Topo
 
 	void Map::input()
 	{
-		if (IsKeyReleased(KEY_SPACE) || (IsKeyDown(KEY_SPACE) && jFMultiplier >= 2))
-		{
-			player->jump(jFMultiplier, unit);
-			jFMultiplier = 1;
-		}
-
-		if (IsKeyDown(KEY_SPACE))
-			jFMultiplier += GetFrameTime() * 2;
+		if (IsKeyPressed(KEY_SPACE))
+			player->jump(unit);
 
 
 		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 			player->shoot();
-
 
 	}
 
@@ -138,6 +132,17 @@ namespace Topo
 	{
 		if (rectanglesCollide(player->getDest(), obs->getCol()))
 			player->flicker();
+
+		for (int i = 0; i < maxBullets; i++)
+		{
+			if (CheckCollisionCircleRec(player->getBullet(i)->getPos(), static_cast<float>(player->getBullet(i)->getRadius()), Rectangle{ flyEnemy->getPos().x, flyEnemy->getPos().y, flyEnemy->getSize().x, flyEnemy->getSize().y }))
+			{
+				player->getBullet(i)->setActive(false, player->getX(), player->getY());
+				flyEnemy->restart();
+			}
+
+
+		}
 
 
 	}

@@ -36,6 +36,7 @@
     <ClInclude Include="src\header\Bullets.h" />
     <ClInclude Include="src\header\Character.h" />
     <ClInclude Include="src\header\Clouds.h" />
+    <ClInclude Include="src\header\Enums.h" />
     <ClInclude Include="src\header\FlyEnemy.h" />
     <ClInclude Include="src\header\Game.h" />
     <ClInclude Include="src\header\Map.h" />

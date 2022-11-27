@@ -19,10 +19,10 @@ namespace Topo
 		do
 		{
 			if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) }, 15 * map->getUnit()) &&
-				IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+				IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
 				scenes = Scenes::Play;
 			else if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 1.3) }, 15 * map->getUnit()) &&
-				IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+				IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
 				scenes = Scenes::Credits;
 			else if (scenes == Scenes::Credits && IsKeyPressed(KEY_BACKSPACE))
 				scenes = Scenes::MainMenu;
@@ -77,7 +77,7 @@ namespace Topo
 
 	void Game::update()
 	{
-		map->update();
+		map->update(scenes);
 	}
 
 	void Game::draw()

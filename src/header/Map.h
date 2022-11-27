@@ -7,6 +7,8 @@
 #include "Clouds.h"
 #include "Bullets.h"
 #include "FlyEnemy.h"
+#include "Enums.h"
+
 
 namespace Topo
 {
@@ -15,7 +17,7 @@ namespace Topo
 	{
 	private:
 		float unit;
-		float jFMultiplier;
+		
 
 		Rectangle map;
 		Color tint;
@@ -36,7 +38,7 @@ namespace Topo
 		float getWidth();
 		float getUnit();
 
-		void update();
+		void update(Scenes activeScene);
 		void draw();
 
 		void input();

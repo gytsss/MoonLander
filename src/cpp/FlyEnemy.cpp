@@ -15,6 +15,10 @@ namespace Topo
 		pos.x = startX;
 		pos.y = 30 * unit;
 
+		topMove = 15;
+		downMove = 50;
+
+
 		force = 1;
 
 		parallax = new Parallax(0);
@@ -36,12 +40,12 @@ namespace Topo
 		size.x = 10 * unit;
 		size.y = 10 * unit;
 
-		if (pos.y > 50 * unit)
+		if (pos.y > downMove * unit)
 		{
 			force = -force;
 		}
 
-		if (pos.y < 15 * unit)
+		if (pos.y < topMove * unit)
 		{
 			force = -force;
 		}
@@ -54,6 +58,16 @@ namespace Topo
 	Vector2 FlyEnemy::getPos()
 	{
 		return pos;
+	}
+
+	Vector2 FlyEnemy::getSize()
+	{
+		return size;
+	}
+
+	void FlyEnemy::restart()
+	{
+		pos.x = startX;
 	}
 
 	void FlyEnemy::updateParallax(float playerYDif)

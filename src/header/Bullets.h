@@ -11,7 +11,7 @@ namespace Topo
 	private:
 		float x;
 		float y;
-		float radius;
+		int radius;
 		bool isActive;
 		Vector2 speed;
 
@@ -24,6 +24,9 @@ namespace Topo
 		void update(float unit);
 		bool getActive();
 		void setActive(bool isActive, float x, float y);
+		int getRadius();
+		Vector2 getPos();
+
 		
 
 	};

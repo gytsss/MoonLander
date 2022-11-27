@@ -24,7 +24,7 @@ namespace Topo
 	{
 		if (isActive)
 		{
-			DrawCircle(static_cast<int>(x), static_cast<int>(y), radius, RED);
+			DrawCircle(static_cast<int>(x), static_cast<int>(y), static_cast<float>(radius), RED);
 		}
 	}
 
@@ -46,6 +46,16 @@ namespace Topo
 		this->isActive = active;
 		this->x = posX;
 		this->y = posY;
+	}
+
+	int Bullet::getRadius()
+	{
+		return radius;
+	}
+
+	Vector2 Bullet::getPos()
+	{
+		return Vector2{ x , y };
 	}
 	
 }

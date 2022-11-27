@@ -10,8 +10,8 @@ namespace Topo
 		floorHeight = map.y + map.height;
 		inAir = false;
 		velocity = 0;
-		jumpForce = 4;
-		grav = -10;
+		jumpForce = 10;
+		grav = -15;
 		ghost = false;
 		ghostCounter = ghostTime;
 		flickerCounter = flickerTime;
@@ -100,12 +100,17 @@ namespace Topo
 		return dest;
 	}
 
-	void Character::jump(float multiplier, float unit)
+	Bullet* Character::getBullet(int i)
+	{
+		return bullets[i];
+	}
+
+	void Character::jump(float unit)
 	{
 		if (!inAir)
 		{
 			inAir = true;
-			velocity += jumpForce * unit * multiplier;
+			velocity += jumpForce * unit ;
 		}
 	}
 

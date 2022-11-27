@@ -80,5 +80,8 @@
     <ClInclude Include="src\header\FlyEnemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\header\Enums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

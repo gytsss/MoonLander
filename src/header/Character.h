@@ -36,8 +36,9 @@ namespace Topo
 		float getX();
 		float getY();
 		Rectangle getDest();
+		Bullet* getBullet(int i);
 
-		void jump(float multiplier, float unit);
+		void jump( float unit);
 		void move(float unit);
 		void flicker();
 		void shoot();

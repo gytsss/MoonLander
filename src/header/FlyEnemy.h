@@ -12,6 +12,9 @@ namespace Topo
 		float floorHeight;
 		float startX;
 		float force;
+		int topMove;
+		int downMove;
+
 
 		Vector2 pos;
 		Vector2 speed;
@@ -25,9 +28,12 @@ namespace Topo
 
 		void draw();
 		void update(float unit);
-		Vector2 getPos();
-
 		void updateParallax(float playerYDif);
+		void restart();
+		
+		Vector2 getPos();
+		Vector2 getSize();
+
 
 	};
 }
