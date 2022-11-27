@@ -1,8 +1,1 @@
-IF NOT EXIST "$(TargetDir)res" (
-CD $(TargetDir)
-MKDIR res
-
-CD res
-
-XCOPY "$(SolutionDir)\res"  "$(TargetDir)res"
-)
+xcopy %1 %2 /S /I /Q /Y /D
