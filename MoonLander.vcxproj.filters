@@ -45,7 +45,7 @@
     <ClCompile Include="src\cpp\Bullets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FlyEnemy.cpp">
+    <ClCompile Include="src\cpp\FlyEnemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,7 +77,7 @@
     <ClInclude Include="src\header\Bullets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FlyEnemy.h">
+    <ClInclude Include="src\header\FlyEnemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

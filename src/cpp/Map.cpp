@@ -20,6 +20,7 @@ namespace Topo
 
 		player = new Character(unit, map);
 		obs = new Obstacle(unit, map);
+		flyEnemy = new FlyEnemy(unit, map);
 		bg = new Background(map);
 		clouds = new Clouds(map);
 	}
@@ -28,6 +29,7 @@ namespace Topo
 	{
 		delete player;
 		delete obs;
+		delete flyEnemy;
 	}
 
 	Vector2 Map::getSize()
@@ -68,41 +70,50 @@ namespace Topo
 		map.height = 90 * unit;
 		map.x = 0;
 		map.y = screenHeight / 2 - map.height / 2;
-		
-		
+
+
 		input();
 
 		checkCollisions();
 
 		player->update(unit, map);
 		obs->update(unit, map);
+		flyEnemy->update(unit);
 		bg->update(unit, map);
 		clouds->update(unit, map);
-		
+
 
 
 		playerYDif = player->getY() - playerYDif;
 
-		obs->updateParallax( playerYDif);
-		bg->updateParallax( playerYDif);
-		clouds->updateParallax( playerYDif);
+		obs->updateParallax(playerYDif);
+		bg->updateParallax(playerYDif);
+		clouds->updateParallax(playerYDif);
+		flyEnemy->updateParallax(playerYDif);
 
 		if (obs->isBehindPlayer())
 		{
 			delete obs;
 			obs = new Obstacle(unit, map);
 		}
+
+		if (flyEnemy->getPos().x > GetScreenWidth())
+		{
+			delete flyEnemy;
+			flyEnemy = new FlyEnemy(unit, map);
+		}
 	}
 
 	void Map::draw()
 	{
 		DrawRectangleRec(map, tint);
-		clouds->draw();
-		bg->draw();
+			clouds->draw();
+			bg->draw();
 		player->draw();
 		obs->draw();
+		flyEnemy->draw();
 
-		
+
 	}
 
 	void Map::input()
@@ -116,11 +127,11 @@ namespace Topo
 		if (IsKeyDown(KEY_SPACE))
 			jFMultiplier += GetFrameTime() * 2;
 
-		
+
 		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 			player->shoot();
 
-		
+
 	}
 
 	void Map::checkCollisions()
@@ -128,6 +139,6 @@ namespace Topo
 		if (rectanglesCollide(player->getDest(), obs->getCol()))
 			player->flicker();
 
-		
+
 	}
 }

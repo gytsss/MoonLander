@@ -6,6 +6,7 @@
 #include "Background.h"
 #include "Clouds.h"
 #include "Bullets.h"
+#include "FlyEnemy.h"
 
 namespace Topo
 {
@@ -20,6 +21,7 @@ namespace Topo
 		Color tint;
 		Character* player;
 		Obstacle* obs;
+		FlyEnemy* flyEnemy;
 		Background* bg;
 		Clouds* clouds;
 	
