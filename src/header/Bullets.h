@@ -22,8 +22,9 @@ namespace Topo
 
 		void draw();
 		void update(float unit);
-		bool getActive();
 		void setActive(bool isActive, float x, float y);
+
+		bool getActive();
 		int getRadius();
 		Vector2 getPos();
 

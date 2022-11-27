@@ -76,11 +76,14 @@ namespace Topo
 
 	void Character::draw()
 	{
+
 		DrawRectangleRec(dest, tint);
+
 		for (int i = 0; i < maxBullets; i++)
 		{
 			bullets[i]->draw();
 		}
+
 	}
 
 	float Character::getX()
@@ -103,6 +106,11 @@ namespace Topo
 	Bullet* Character::getBullet(int i)
 	{
 		return bullets[i];
+	}
+
+	int Character::getScore()
+	{
+		return score;
 	}
 
 	void Character::jump(float unit)
@@ -148,7 +156,7 @@ namespace Topo
 		currentBullets++;
 
 	}
-	void Character::increaseScore(float scoreToIncrease)
+	void Character::increaseScore(int scoreToIncrease)
 	{
 		this->score += scoreToIncrease;
 	}

@@ -95,6 +95,7 @@ namespace Topo
 		{
 			delete obs;
 			obs = new Obstacle(unit, map);
+			player->increaseScore(1);
 		}
 
 		if (flyEnemy->getPos().x > GetScreenWidth())
@@ -107,12 +108,17 @@ namespace Topo
 
 	void Map::draw()
 	{
+		int scoreLength = MeasureText(TextFormat("&i", player->getScore()), static_cast<int>(50 * unit));
+
 		DrawRectangleRec(map, tint);
+
+		DrawText(TextFormat("%i", player->getScore()), GetScreenWidth() / 2 - scoreLength / 2, static_cast<int>(GetScreenHeight() / 5), static_cast<int>(50 * unit), BROWN);
+
+		flyEnemy->draw();
 		clouds->draw();
 		bg->draw();
 		player->draw();
 		obs->draw();
-		flyEnemy->draw();
 
 
 	}
@@ -139,8 +145,8 @@ namespace Topo
 			{
 				player->getBullet(i)->setActive(false, player->getX(), player->getY());
 				flyEnemy->restart();
+				player->increaseScore(3);
 			}
-
 
 		}
 

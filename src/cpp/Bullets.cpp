@@ -36,6 +36,7 @@ namespace Topo
 			y -= speed.y * unit * GetFrameTime();
 		}
 	}
+
 	bool Bullet::getActive()
 	{
 		return isActive;
