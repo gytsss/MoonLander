@@ -10,7 +10,6 @@ namespace Topo
 		velocity = 0;
 		jumpForce = 10;
 		grav = -15;
-		ghost = false;
 		currentBullets = 0;
 		score = 0;
 		isAlive = true;
@@ -64,6 +63,11 @@ namespace Topo
 	{
 
 		DrawRectangleRec(dest, tint);
+		DrawRectangle(static_cast<int>(dest.x + dest.width - 10), static_cast<int>(dest.y + dest.height / 4), 10, 10, RED);
+		DrawRectangle(static_cast<int>(dest.x + dest.width - 20), static_cast<int>(dest.y + dest.height / 1.5 + 10), 20, 10, RED);
+		DrawRectangle(static_cast<int>(dest.x + dest.width - 40), static_cast<int>(dest.y + dest.height / 1.5 - 10), 10, 10, RED);
+		DrawRectangle(static_cast<int>(dest.x + dest.width - 30), static_cast<int>(dest.y + dest.height / 1.5), 10, 10, RED);
+
 
 		for (int i = 0; i < maxBullets; i++)
 		{
@@ -157,5 +161,13 @@ namespace Topo
 	void Character::setAlive(bool alive)
 	{
 		isAlive = alive;
+	}
+	void Character::setDestX(float x)
+	{
+		dest.x = x;
+	}
+	void Character::setColor(Color color)
+	{
+		tint = color;
 	}
 }

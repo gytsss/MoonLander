@@ -18,11 +18,13 @@ namespace Topo
 	private:
 		float unit;
 		bool isFinished;
+		bool isMultiplayer;
 		
 
 		Rectangle map;
 		Color tint;
 		Character* player;
+		Character* secondPlayer;
 		Obstacle* obs;
 		FlyEnemy* flyEnemy;
 		Background* bg;
@@ -46,5 +48,6 @@ namespace Topo
 		void input();
 
 		void checkCollisions();
+		void setMultiplayer(bool areTwoPlayers);
 	};
 }

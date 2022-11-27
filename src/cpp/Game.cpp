@@ -24,6 +24,15 @@ namespace Topo
 			else if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 1.3) }, 15 * map->getUnit()) &&
 				IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
 				scenes = Scenes::Credits;
+			else if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 3), static_cast<float>(GetScreenHeight() / 1.57) }, 15 * map->getUnit()) &&
+				IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+				scenes = Scenes::Exit;
+			else if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 1.5), static_cast<float>(GetScreenHeight() / 1.57) }, 15 * map->getUnit()) &&
+				IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+			{
+				map->setMultiplayer(true);
+				scenes = Scenes::Play;
+			}
 			else if (scenes == Scenes::Credits && IsKeyPressed(KEY_SPACE))
 				scenes = Scenes::MainMenu;
 
@@ -97,15 +106,16 @@ namespace Topo
 
 	void Game::draw()
 	{
-		int titleLenght = MeasureText("Moon Patrol", 50);
+		int titleLenght = MeasureText("Moon Patrol", static_cast <int>(10 * map->getUnit()));
 		int creditsLenght = MeasureText("Topo Fabbri and Godoy Tobias", static_cast <int>(5 * map->getUnit()));
 		int playLenght = MeasureText("Play", static_cast <int>(5 * map->getUnit()));
 		int creditLenght = MeasureText("Credits", static_cast <int>(5 * map->getUnit()));
+		int exitLenght = MeasureText("Exit", static_cast <int>(5 * map->getUnit()));
+		int multiplayerLenght = MeasureText("Multiplayer", static_cast <int>(5 * map->getUnit()));
 
 		switch (scenes)
 		{
-		case Scenes::Exit:
-			break;
+		case Scenes::Exit:  break;
 
 		case Scenes::Play:
 			BeginDrawing();
@@ -115,7 +125,6 @@ namespace Topo
 
 			DrawRectangle(0, 0, GetScreenWidth(), static_cast<int>(map->getPosY()), BLACK);
 			DrawRectangle(0, static_cast<int>(map->getPosY() + map->getHeight()), GetScreenWidth(), static_cast<int>(map->getPosY()), BLACK);
-
 
 
 			DrawFPS(5, 5);
@@ -128,12 +137,16 @@ namespace Topo
 
 
 
-			DrawText("Moon patrol",GetScreenWidth() / 2 - titleLenght / 2, GetScreenHeight() / 4, 50, RED);
+			DrawText("Moon patrol",GetScreenWidth() / 2 - titleLenght / 2, static_cast<int>(GetScreenHeight() / 5.5), static_cast <int>(10 * map->getUnit()), RED);
 			DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, 15 * map->getUnit(), RED);
 			DrawCircleLines(GetScreenWidth() / 2, static_cast<int>(GetScreenHeight() / 1.3), 15 * map->getUnit(), BLUE);
+			DrawCircleLines(static_cast<int>(GetScreenWidth() / 3), static_cast<int>(GetScreenHeight() / 1.57), 15 * map->getUnit(), ORANGE);
+			DrawCircleLines(static_cast<int>(GetScreenWidth() / 1.5), static_cast<int>(GetScreenHeight() / 1.57), 15 * map->getUnit(), GREEN);
 
 			DrawText("Play", GetScreenWidth() / 2 - playLenght / 2, static_cast<int>(GetScreenHeight() / 2.1), static_cast <int>(5 * map->getUnit()), RED);
 			DrawText("Credits", GetScreenWidth() / 2 - creditLenght / 2, static_cast<int>(GetScreenHeight() / 1.35), static_cast <int>(5 * map->getUnit()), BLUE);
+			DrawText("Exit", GetScreenWidth() / 3 - exitLenght / 2, static_cast<int>(GetScreenHeight() / 1.62), static_cast <int>(5 * map->getUnit()), ORANGE);
+			DrawText("Multiplayer", static_cast<int>(GetScreenWidth() / 1.5 - multiplayerLenght / 2), static_cast<int>(GetScreenHeight() / 1.62), static_cast <int>(5 * map->getUnit()), GREEN);
 
 			EndDrawing();
 			break;

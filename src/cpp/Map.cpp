@@ -15,11 +15,13 @@ namespace Topo
 		map.y = screenHeight / 2 - map.height / 2;
 
 		isFinished = false;
+		isMultiplayer = false;
 
 		tint = { 185, 235, 255,255 };
 
 
 		player = new Character(unit, map);
+		secondPlayer = new Character(unit, map);
 		obs = new Obstacle(unit, map);
 		flyEnemy = new FlyEnemy(unit, map);
 		bg = new Background(map);
@@ -29,6 +31,7 @@ namespace Topo
 	Map::~Map()
 	{
 		delete player;
+		delete secondPlayer;
 		delete obs;
 		delete flyEnemy;
 	}
@@ -77,7 +80,14 @@ namespace Topo
 		map.x = 0;
 		map.y = screenHeight / 2 - map.height / 2;
 
-		if (player->getIsAlive())
+		if (isMultiplayer)
+		{
+			secondPlayer->setDestX(player->getDest().x - 15 * unit);
+			secondPlayer->setColor(BLACK);
+		}
+
+
+		if (player->getIsAlive() && secondPlayer->getIsAlive())
 		{
 
 			if (activeScene == Scenes::Play)
@@ -88,6 +98,10 @@ namespace Topo
 			checkCollisions();
 
 			player->update(unit, map);
+
+			if (isMultiplayer)
+			secondPlayer->update(unit, map);
+
 			obs->update(unit, map);
 			flyEnemy->update(unit);
 			bg->update(unit, map);
@@ -126,7 +140,7 @@ namespace Topo
 		int scoreLength = MeasureText(TextFormat("&i", player->getScore()), static_cast<int>(50 * unit));
 		int backMenuLength = MeasureText("Back to menu (SPACE)", static_cast<int>(5 * unit));
 
-		if (player->getIsAlive())
+		if (player->getIsAlive() && secondPlayer->getIsAlive())
 		{
 			DrawRectangleRec(map, tint);
 
@@ -135,6 +149,10 @@ namespace Topo
 			clouds->draw();
 			bg->draw();
 			player->draw();
+
+			if (isMultiplayer)	
+			secondPlayer->draw();
+
 			obs->draw();
 			flyEnemy->draw();
 		}
@@ -149,10 +167,7 @@ namespace Topo
 
 			DrawText("Back to menu (SPACE)", GetScreenWidth() / 2 - backMenuLength / 2, static_cast<int>(GetScreenHeight() / 1.5), static_cast<int>(5 * unit), RED);
 
-			
 		}
-
-		
 
 
 	}
@@ -162,9 +177,17 @@ namespace Topo
 		if (IsKeyPressed(KEY_SPACE))
 			player->jump(unit);
 
-
 		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 			player->shoot();
+
+		if (isMultiplayer)
+		{
+			if (IsKeyPressed(KEY_J))
+				secondPlayer->jump(unit);
+
+			if (IsKeyPressed(KEY_K))
+				secondPlayer->shoot();
+		}
 
 	}
 
@@ -172,6 +195,11 @@ namespace Topo
 	{
 		if (rectanglesCollide(player->getDest(), obs->getCol()))
 			player->setAlive(false);
+		if (isMultiplayer)
+		{
+			if (rectanglesCollide(secondPlayer->getDest(), obs->getCol()))
+				secondPlayer->setAlive(false);
+		}
 
 		for (int i = 0; i < maxBullets; i++)
 		{
@@ -182,8 +210,22 @@ namespace Topo
 				player->increaseScore(3);
 			}
 
+			if (isMultiplayer)
+			{
+				if (CheckCollisionCircleRec(secondPlayer->getBullet(i)->getPos(), static_cast<float>(secondPlayer->getBullet(i)->getRadius()), Rectangle{ flyEnemy->getPos().x, flyEnemy->getPos().y, flyEnemy->getSize().x, flyEnemy->getSize().y }))
+				{
+					secondPlayer->getBullet(i)->setActive(false, player->getX(), player->getY());
+					flyEnemy->restart();
+					player->increaseScore(3);
+				}
+			}
+
 		}
 
 
+	}
+	void Map::setMultiplayer(bool areTwoPlayers)
+	{
+		isMultiplayer = areTwoPlayers;
 	}
 }

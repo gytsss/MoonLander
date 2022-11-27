@@ -15,7 +15,6 @@ namespace Topo
 		float velocity;
 		float jumpForce;
 		float grav;
-		bool ghost;
 		int currentBullets;
 		int score;
 		bool isAlive;
@@ -45,6 +44,8 @@ namespace Topo
 		void shoot();
 		void increaseScore(int score);
 		void setAlive(bool alive);
+		void setDestX(float x);
+		void setColor(Color color);
 
 	};
 }
