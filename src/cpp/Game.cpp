@@ -24,7 +24,7 @@ namespace Topo
 			else if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 1.3) }, 15 * map->getUnit()) &&
 				IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
 				scenes = Scenes::Credits;
-			else if (scenes == Scenes::Credits && IsKeyPressed(KEY_BACKSPACE))
+			else if (scenes == Scenes::Credits && IsKeyPressed(KEY_SPACE))
 				scenes = Scenes::MainMenu;
 
 			switch (scenes)
@@ -97,12 +97,14 @@ namespace Topo
 
 	void Game::draw()
 	{
-		float titleLenght = static_cast<float>(MeasureText("Moon Patrol", 50));
+		int titleLenght = MeasureText("Moon Patrol", 50);
+		int creditsLenght = MeasureText("Topo Fabbri and Godoy Tobias", static_cast <int>(5 * map->getUnit()));
+		int playLenght = MeasureText("Play", static_cast <int>(5 * map->getUnit()));
+		int creditLenght = MeasureText("Credits", static_cast <int>(5 * map->getUnit()));
 
 		switch (scenes)
 		{
 		case Scenes::Exit:
-
 			break;
 
 		case Scenes::Play:
@@ -126,9 +128,12 @@ namespace Topo
 
 
 
-			DrawText("Moon patrol", static_cast<int>(GetScreenWidth() / 2 - titleLenght / 2), GetScreenHeight() / 4, 50, RED);
+			DrawText("Moon patrol",GetScreenWidth() / 2 - titleLenght / 2, GetScreenHeight() / 4, 50, RED);
 			DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, 15 * map->getUnit(), RED);
 			DrawCircleLines(GetScreenWidth() / 2, static_cast<int>(GetScreenHeight() / 1.3), 15 * map->getUnit(), BLUE);
+
+			DrawText("Play", GetScreenWidth() / 2 - playLenght / 2, static_cast<int>(GetScreenHeight() / 2.1), static_cast <int>(5 * map->getUnit()), RED);
+			DrawText("Credits", GetScreenWidth() / 2 - creditLenght / 2, static_cast<int>(GetScreenHeight() / 1.35), static_cast <int>(5 * map->getUnit()), BLUE);
 
 			EndDrawing();
 			break;
@@ -137,8 +142,9 @@ namespace Topo
 			BeginDrawing();
 			ClearBackground(BLACK);
 
-			DrawText("Topo Fabbri and", GetScreenWidth() / 2 - 80, GetScreenHeight() / 2, static_cast <int>(5 * map->getUnit()), RED);
-			DrawText("Godoy Tobias", GetScreenWidth() / 2 - 80, 600, static_cast <int>(5 * map->getUnit()), RED);
+			DrawText("Topo Fabbri and Godoy Tobias", GetScreenWidth() / 2 - creditsLenght / 2, GetScreenHeight() / 2, static_cast <int>(5 * map->getUnit()), RED);
+			DrawText("<- (SPACE)", 10, static_cast<int>(GetScreenHeight() / 1.1), static_cast <int>(5 * map->getUnit()), RED);
+			
 
 			EndDrawing();
 			break;
