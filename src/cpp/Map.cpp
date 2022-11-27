@@ -220,6 +220,7 @@ namespace Topo
 	{
 		if (rectanglesCollide(player->getDest(), obs->getCol()))
 			player->setAlive(false);
+
 		if (isMultiplayer)
 		{
 			if (rectanglesCollide(secondPlayer->getDest(), obs->getCol()))
@@ -232,7 +233,7 @@ namespace Topo
 			{
 				player->getBullet(i)->setActive(false, player->getX(), player->getY());
 				flyEnemy->restart();
-				player->increaseScore(3);
+				player->increaseScore(1);
 			}
 
 			if (isMultiplayer)
@@ -241,7 +242,7 @@ namespace Topo
 				{
 					secondPlayer->getBullet(i)->setActive(false, player->getX(), player->getY());
 					flyEnemy->restart();
-					player->increaseScore(3);
+					player->increaseScore(1);
 				}
 			}
 
