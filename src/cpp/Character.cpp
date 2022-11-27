@@ -5,18 +5,15 @@ namespace Topo
 {
 	Character::Character(float unit, Rectangle map)
 	{
-		ghostTime = 2;
-		flickerTime = .5f;
 		floorHeight = map.y + map.height;
 		inAir = false;
 		velocity = 0;
 		jumpForce = 10;
 		grav = -15;
 		ghost = false;
-		ghostCounter = ghostTime;
-		flickerCounter = flickerTime;
 		currentBullets = 0;
 		score = 0;
+		isAlive = true;
 
 		dest.width = 10 * unit;
 		dest.height = 10 * unit;
@@ -55,18 +52,6 @@ namespace Topo
 			inAir = false;
 		}
 
-		if (ghost)
-		{
-			tint.a = tint.a == 255 ? 100 : 255;
-			ghostCounter -= GetFrameTime();
-		}
-
-		if (ghostCounter <= 0)
-		{
-			ghostCounter = ghostTime;
-			ghost = false;
-			tint.a = 255;
-		}
 
 		for (int i = 0; i < maxBullets; i++)
 		{
@@ -113,12 +98,20 @@ namespace Topo
 		return score;
 	}
 
+	bool Character::getIsAlive()
+	{
+		if (isAlive)
+			return true;
+		else
+			return false;
+	}
+
 	void Character::jump(float unit)
 	{
 		if (!inAir)
 		{
 			inAir = true;
-			velocity += jumpForce * unit ;
+			velocity += jumpForce * unit;
 		}
 	}
 
@@ -137,27 +130,26 @@ namespace Topo
 		dest.y -= velocity * unit * GetFrameTime();
 	}
 
-	void Character::flicker()
-	{
-		ghostCounter = ghostTime;
-		ghost = true;
-	}
 
 	void Character::shoot()
 	{
-		
+
 		if (currentBullets >= maxBullets)
 		{
 			currentBullets = 0;
 		}
-		
 
-		bullets[currentBullets]->setActive(true, dest.x + dest.width / 4 , dest.y);
+
+		bullets[currentBullets]->setActive(true, dest.x + dest.width / 4, dest.y);
 		currentBullets++;
 
 	}
 	void Character::increaseScore(int scoreToIncrease)
 	{
 		this->score += scoreToIncrease;
+	}
+	void Character::setAlive(bool alive)
+	{
+		isAlive = alive;
 	}
 }

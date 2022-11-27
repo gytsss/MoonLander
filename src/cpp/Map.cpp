@@ -14,6 +14,8 @@ namespace Topo
 		map.x = 0;
 		map.y = screenHeight / 2 - map.height / 2;
 
+		isFinished = false;
+
 		tint = { 185, 235, 255,255 };
 
 
@@ -56,6 +58,11 @@ namespace Topo
 		return unit;
 	}
 
+	bool Map::getIsFinished()
+	{
+		return isFinished;
+	}
+
 	void Map::update(Scenes activeScene)
 	{
 		const float screenWidth = static_cast<float>(GetScreenWidth());
@@ -70,38 +77,46 @@ namespace Topo
 		map.x = 0;
 		map.y = screenHeight / 2 - map.height / 2;
 
-		if (activeScene == Scenes::Play)
+		if (player->getIsAlive())
 		{
-			input();
+
+			if (activeScene == Scenes::Play)
+			{
+				input();
+			}
+
+			checkCollisions();
+
+			player->update(unit, map);
+			obs->update(unit, map);
+			flyEnemy->update(unit);
+			bg->update(unit, map);
+			clouds->update(unit, map);
+
+
+			playerYDif = player->getY() - playerYDif;
+
+			obs->updateParallax(playerYDif);
+			bg->updateParallax(playerYDif);
+			clouds->updateParallax(playerYDif);
+			flyEnemy->updateParallax(playerYDif);
+
+			if (obs->isBehindPlayer())
+			{
+				delete obs;
+				obs = new Obstacle(unit, map);
+				player->increaseScore(1);
+			}
+
+			if (flyEnemy->getPos().x > screenWidth)
+			{
+				delete flyEnemy;
+				flyEnemy = new FlyEnemy(unit, map);
+			}
 		}
-
-		checkCollisions();
-
-		player->update(unit, map);
-		obs->update(unit, map);
-		flyEnemy->update(unit);
-		bg->update(unit, map);
-		clouds->update(unit, map);
-
-
-		playerYDif = player->getY() - playerYDif;
-
-		obs->updateParallax(playerYDif);
-		bg->updateParallax(playerYDif);
-		clouds->updateParallax(playerYDif);
-		flyEnemy->updateParallax(playerYDif);
-
-		if (obs->isBehindPlayer())
+		else
 		{
-			delete obs;
-			obs = new Obstacle(unit, map);
-			player->increaseScore(1);
-		}
-
-		if (flyEnemy->getPos().x > GetScreenWidth())
-		{
-			delete flyEnemy;
-			flyEnemy = new FlyEnemy(unit, map);
+			isFinished = true;
 		}
 	}
 
@@ -110,15 +125,30 @@ namespace Topo
 	{
 		int scoreLength = MeasureText(TextFormat("&i", player->getScore()), static_cast<int>(50 * unit));
 
-		DrawRectangleRec(map, tint);
+		if (player->getIsAlive())
+		{
+			DrawRectangleRec(map, tint);
 
-		DrawText(TextFormat("%i", player->getScore()), GetScreenWidth() / 2 - scoreLength / 2, static_cast<int>(GetScreenHeight() / 5), static_cast<int>(50 * unit), BROWN);
+			DrawText(TextFormat("%i", player->getScore()), GetScreenWidth() / 2 - scoreLength / 2, static_cast<int>(GetScreenHeight() / 5), static_cast<int>(50 * unit), BROWN);
 
-		flyEnemy->draw();
-		clouds->draw();
-		bg->draw();
-		player->draw();
-		obs->draw();
+			clouds->draw();
+			bg->draw();
+			player->draw();
+			obs->draw();
+			flyEnemy->draw();
+		}
+		else
+		{
+			DrawRectangleRec(map, tint);
+
+			clouds->draw();
+			bg->draw();
+
+			DrawText(TextFormat("%i", player->getScore()), GetScreenWidth() / 2 - scoreLength / 2, static_cast<int>(GetScreenHeight() / 5), static_cast<int>(50 * unit), BROWN);
+			
+		}
+
+		
 
 
 	}
@@ -137,7 +167,7 @@ namespace Topo
 	void Map::checkCollisions()
 	{
 		if (rectanglesCollide(player->getDest(), obs->getCol()))
-			player->flicker();
+			player->setAlive(false);
 
 		for (int i = 0; i < maxBullets; i++)
 		{

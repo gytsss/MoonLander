@@ -17,6 +17,7 @@ namespace Topo
 	{
 	private:
 		float unit;
+		bool isFinished;
 		
 
 		Rectangle map;
@@ -37,6 +38,7 @@ namespace Topo
 		float getHeight();
 		float getWidth();
 		float getUnit();
+		bool getIsFinished();
 
 		void update(Scenes activeScene);
 		void draw();

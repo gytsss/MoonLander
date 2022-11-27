@@ -9,18 +9,16 @@ namespace Topo
 	class Character
 	{
 	private:
-		float ghostTime;
-		float flickerTime;
+	
 		float floorHeight;
 		bool inAir;
 		float velocity;
 		float jumpForce;
 		float grav;
 		bool ghost;
-		float ghostCounter;
-		float flickerCounter;
 		int currentBullets;
 		int score;
+		bool isAlive;
 
 		Rectangle dest;
 		Color tint;
@@ -38,11 +36,13 @@ namespace Topo
 		Rectangle getDest();
 		Bullet* getBullet(int i);
 		int getScore();
+		bool getIsAlive();
 
 		void jump( float unit);
 		void move(float unit);
-		void flicker();
 		void shoot();
 		void increaseScore(int score);
+		void setAlive(bool alive);
+
 	};
 }

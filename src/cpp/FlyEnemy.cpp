@@ -18,7 +18,6 @@ namespace Topo
 		topMove = 15;
 		downMove = 50;
 
-
 		force = 1;
 
 		parallax = new Parallax(0);

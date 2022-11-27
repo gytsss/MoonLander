@@ -77,7 +77,22 @@ namespace Topo
 
 	void Game::update()
 	{
-		map->update(scenes);
+		if (map->getIsFinished())
+		{
+			isPlaying = false;
+			if (IsKeyPressed(KEY_SPACE))
+			{
+				scenes = Scenes::MainMenu;
+
+				delete map;
+				map = new Map();
+			}
+		}
+		else
+		{
+			map->update(scenes);
+		}
+
 	}
 
 	void Game::draw()
@@ -109,9 +124,9 @@ namespace Topo
 			BeginDrawing();
 			ClearBackground(BLACK);
 
-			
 
-			DrawText("Moon patrol",static_cast<int>(GetScreenWidth() / 2 - titleLenght / 2), GetScreenHeight() / 4, 50, RED);
+
+			DrawText("Moon patrol", static_cast<int>(GetScreenWidth() / 2 - titleLenght / 2), GetScreenHeight() / 4, 50, RED);
 			DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, 15 * map->getUnit(), RED);
 			DrawCircleLines(GetScreenWidth() / 2, static_cast<int>(GetScreenHeight() / 1.3), 15 * map->getUnit(), BLUE);
 
@@ -122,8 +137,8 @@ namespace Topo
 			BeginDrawing();
 			ClearBackground(BLACK);
 
-			DrawText("Topo Fabbri and", GetScreenWidth() / 2 - 80, GetScreenHeight() / 2, static_cast < int>(5 * map->getUnit()), RED);
-			DrawText("Godoy Tobias", GetScreenWidth() / 2 - 80, 600, static_cast < int>( 5 * map->getUnit()), RED);
+			DrawText("Topo Fabbri and", GetScreenWidth() / 2 - 80, GetScreenHeight() / 2, static_cast <int>(5 * map->getUnit()), RED);
+			DrawText("Godoy Tobias", GetScreenWidth() / 2 - 80, 600, static_cast <int>(5 * map->getUnit()), RED);
 
 			EndDrawing();
 			break;
