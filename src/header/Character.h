@@ -22,6 +22,7 @@ namespace Topo
 
 		Rectangle dest;
 		Color tint;
+		Color scoreTint;
 		Bullet* bullets[maxBullets];
 
 	public:
@@ -37,6 +38,7 @@ namespace Topo
 		Bullet* getBullet(int i);
 		int getScore();
 		bool getIsAlive();
+		Color getScoreTint();
 
 		void jump( float unit);
 		void move(float unit);

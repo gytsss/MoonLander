@@ -124,12 +124,13 @@ namespace Topo
 	void Map::draw()
 	{
 		int scoreLength = MeasureText(TextFormat("&i", player->getScore()), static_cast<int>(50 * unit));
+		int backMenuLength = MeasureText("Back to menu (SPACE)", static_cast<int>(5 * unit));
 
 		if (player->getIsAlive())
 		{
 			DrawRectangleRec(map, tint);
 
-			DrawText(TextFormat("%i", player->getScore()), GetScreenWidth() / 2 - scoreLength / 2, static_cast<int>(GetScreenHeight() / 5), static_cast<int>(50 * unit), BROWN);
+			DrawText(TextFormat("%i", player->getScore()), GetScreenWidth() / 2 - scoreLength / 2, static_cast<int>(GetScreenHeight() / 5), static_cast<int>(50 * unit), player->getScoreTint());
 
 			clouds->draw();
 			bg->draw();
@@ -144,7 +145,10 @@ namespace Topo
 			clouds->draw();
 			bg->draw();
 
-			DrawText(TextFormat("%i", player->getScore()), GetScreenWidth() / 2 - scoreLength / 2, static_cast<int>(GetScreenHeight() / 5), static_cast<int>(50 * unit), BROWN);
+			DrawText(TextFormat("%i", player->getScore()), GetScreenWidth() / 2 - scoreLength / 2, static_cast<int>(GetScreenHeight() / 5), static_cast<int>(50 * unit), player->getScoreTint());
+
+			DrawText("Back to menu (SPACE)", GetScreenWidth() / 2 - backMenuLength / 2, static_cast<int>(GetScreenHeight() / 1.5), static_cast<int>(5 * unit), RED);
+
 			
 		}
 

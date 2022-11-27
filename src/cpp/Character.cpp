@@ -21,6 +21,7 @@ namespace Topo
 		dest.y = floorHeight;
 
 		tint = WHITE;
+		scoreTint = { 218,165,32,255 };
 
 		for (int i = 0; i < maxBullets; i++)
 		{
@@ -104,6 +105,11 @@ namespace Topo
 			return true;
 		else
 			return false;
+	}
+
+	Color Character::getScoreTint()
+	{
+		return scoreTint;
 	}
 
 	void Character::jump(float unit)
