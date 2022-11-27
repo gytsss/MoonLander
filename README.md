@@ -1,0 +1,1 @@
+This is a remake of the classic game Moon Patrol for an University project. It was made in C++ with Raylib.

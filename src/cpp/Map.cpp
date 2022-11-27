@@ -83,7 +83,7 @@ namespace Topo
 
 		if (isMultiplayer)
 		{
-			secondPlayer->setDestX(player->getDest().x - 15 * unit);
+			player->setDestX(secondPlayer->getDest().x - 15 * unit);
 			secondPlayer->setColor(BLACK);
 		}
 
@@ -147,7 +147,7 @@ namespace Topo
 		int scoreLength = MeasureText(TextFormat("&i", player->getScore()), static_cast<int>(50 * unit));
 		int backMenuLength = MeasureText("Back to menu (Enter)", static_cast<int>(5 * unit));
 		int howTPLength = MeasureText("Left click to shoot - Space to jump", static_cast<int>(5 * unit));
-		int howTPLength2 = MeasureText("P2: K to shoot - J to jump", static_cast<int>(5 * unit));
+		int howTPLength2 = MeasureText("P2: K to shoot - J to jump (Black)", static_cast<int>(5 * unit));
 		int enterLength = MeasureText("Enter to play", static_cast<int>(8 * unit));
 
 		if (player->getIsAlive() && secondPlayer->getIsAlive())
@@ -171,7 +171,7 @@ namespace Topo
 				if (isMultiplayer)
 				{
 					DrawText("P1: Left click to shoot - Space to jump", GetScreenWidth() / 2 - howTPLength / 2, static_cast<int>(GetScreenHeight() / 6.5), static_cast<int>(5 * unit), BLACK);
-					DrawText("P2: K to shoot - J to jump", GetScreenWidth() / 2 - howTPLength2 / 2, static_cast<int>(GetScreenHeight() / 5), static_cast<int>(5 * unit), BLACK);
+					DrawText("P2: K to shoot - J to jump (Black)", GetScreenWidth() / 2 - howTPLength2 / 2, static_cast<int>(GetScreenHeight() / 5), static_cast<int>(5 * unit), BLACK);
 				}
 				else
 				{
