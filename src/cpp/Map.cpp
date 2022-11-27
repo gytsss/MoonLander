@@ -16,6 +16,7 @@ namespace Topo
 
 		isFinished = false;
 		isMultiplayer = false;
+		isRunning = false;
 
 		tint = { 185, 235, 255,255 };
 
@@ -86,46 +87,52 @@ namespace Topo
 			secondPlayer->setColor(BLACK);
 		}
 
+		if (IsKeyPressed(KEY_ENTER))
+			isRunning = !isRunning;
+
 
 		if (player->getIsAlive() && secondPlayer->getIsAlive())
 		{
 
-			if (activeScene == Scenes::Play)
+			if (isRunning)
 			{
-				input();
-			}
+				if (activeScene == Scenes::Play)
+				{
+					input();
+				}
 
-			checkCollisions();
+				checkCollisions();
 
-			player->update(unit, map);
+				player->update(unit, map);
 
-			if (isMultiplayer)
-			secondPlayer->update(unit, map);
+				if (isMultiplayer)
+					secondPlayer->update(unit, map);
 
-			obs->update(unit, map);
-			flyEnemy->update(unit);
-			bg->update(unit, map);
-			clouds->update(unit, map);
+				obs->update(unit, map);
+				flyEnemy->update(unit);
+				bg->update(unit, map);
+				clouds->update(unit, map);
 
 
-			playerYDif = player->getY() - playerYDif;
+				playerYDif = player->getY() - playerYDif;
 
-			obs->updateParallax(playerYDif);
-			bg->updateParallax(playerYDif);
-			clouds->updateParallax(playerYDif);
-			flyEnemy->updateParallax(playerYDif);
+				obs->updateParallax(playerYDif);
+				bg->updateParallax(playerYDif);
+				clouds->updateParallax(playerYDif);
+				flyEnemy->updateParallax(playerYDif);
 
-			if (obs->isBehindPlayer())
-			{
-				delete obs;
-				obs = new Obstacle(unit, map);
-				player->increaseScore(1);
-			}
+				if (obs->isBehindPlayer())
+				{
+					delete obs;
+					obs = new Obstacle(unit, map);
+					player->increaseScore(1);
+				}
 
-			if (flyEnemy->getPos().x > screenWidth)
-			{
-				delete flyEnemy;
-				flyEnemy = new FlyEnemy(unit, map);
+				if (flyEnemy->getPos().x > screenWidth)
+				{
+					delete flyEnemy;
+					flyEnemy = new FlyEnemy(unit, map);
+				}
 			}
 		}
 		else
@@ -138,7 +145,10 @@ namespace Topo
 	void Map::draw()
 	{
 		int scoreLength = MeasureText(TextFormat("&i", player->getScore()), static_cast<int>(50 * unit));
-		int backMenuLength = MeasureText("Back to menu (SPACE)", static_cast<int>(5 * unit));
+		int backMenuLength = MeasureText("Back to menu (Enter)", static_cast<int>(5 * unit));
+		int howTPLength = MeasureText("Left click to shoot - Space to jump", static_cast<int>(5 * unit));
+		int howTPLength2 = MeasureText("P2: K to shoot - J to jump", static_cast<int>(5 * unit));
+		int enterLength = MeasureText("Enter to play", static_cast<int>(8 * unit));
 
 		if (player->getIsAlive() && secondPlayer->getIsAlive())
 		{
@@ -155,6 +165,21 @@ namespace Topo
 
 			obs->draw();
 			flyEnemy->draw();
+
+			if (!isRunning)
+			{
+				if (isMultiplayer)
+				{
+					DrawText("P1: Left click to shoot - Space to jump", GetScreenWidth() / 2 - howTPLength / 2, static_cast<int>(GetScreenHeight() / 6.5), static_cast<int>(5 * unit), BLACK);
+					DrawText("P2: K to shoot - J to jump", GetScreenWidth() / 2 - howTPLength2 / 2, static_cast<int>(GetScreenHeight() / 5), static_cast<int>(5 * unit), BLACK);
+				}
+				else
+				{
+					DrawText("Left click to shoot - Space to jump", GetScreenWidth() / 2 - howTPLength / 2, static_cast<int>(GetScreenHeight() / 6.5), static_cast<int>(5 * unit), BLACK);
+				}
+				
+				DrawText("Enter to play", GetScreenWidth() / 2 - enterLength / 2, static_cast<int>(GetScreenHeight() / 1.5), static_cast<int>(8 * unit), BLACK);
+			}
 		}
 		else
 		{
@@ -165,7 +190,7 @@ namespace Topo
 
 			DrawText(TextFormat("%i", player->getScore()), GetScreenWidth() / 2 - scoreLength / 2, static_cast<int>(GetScreenHeight() / 5), static_cast<int>(50 * unit), player->getScoreTint());
 
-			DrawText("Back to menu (SPACE)", GetScreenWidth() / 2 - backMenuLength / 2, static_cast<int>(GetScreenHeight() / 1.5), static_cast<int>(5 * unit), RED);
+			DrawText("Back to menu (Enter)", GetScreenWidth() / 2 - backMenuLength / 2, static_cast<int>(GetScreenHeight() / 1.5), static_cast<int>(5 * unit), RED);
 
 		}
 

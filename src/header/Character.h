@@ -18,6 +18,7 @@ namespace Topo
 		int currentBullets;
 		int score;
 		bool isAlive;
+		
 
 		Rectangle dest;
 		Color tint;

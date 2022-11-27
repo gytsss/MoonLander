@@ -89,7 +89,7 @@ namespace Topo
 		if (map->getIsFinished())
 		{
 			isPlaying = false;
-			if (IsKeyPressed(KEY_SPACE))
+			if (IsKeyPressed(KEY_ENTER))
 			{
 				scenes = Scenes::MainMenu;
 
@@ -156,7 +156,7 @@ namespace Topo
 			ClearBackground(BLACK);
 
 			DrawText("Topo Fabbri and Godoy Tobias", GetScreenWidth() / 2 - creditsLenght / 2, GetScreenHeight() / 2, static_cast <int>(5 * map->getUnit()), RED);
-			DrawText("<- (SPACE)", 10, static_cast<int>(GetScreenHeight() / 1.1), static_cast <int>(5 * map->getUnit()), RED);
+			DrawText("<- (Space)", 10, static_cast<int>(GetScreenHeight() / 1.1), static_cast <int>(5 * map->getUnit()), RED);
 			
 
 			EndDrawing();

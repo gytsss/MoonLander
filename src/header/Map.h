@@ -19,7 +19,7 @@ namespace Topo
 		float unit;
 		bool isFinished;
 		bool isMultiplayer;
-		
+		bool isRunning;
 
 		Rectangle map;
 		Color tint;
