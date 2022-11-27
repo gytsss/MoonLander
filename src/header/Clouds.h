@@ -1,6 +1,7 @@
 #pragma once
-#include "Parallax.h"
 #include "Topo.h"
+
+#include "Parallax.h"
 
 namespace Topo
 {

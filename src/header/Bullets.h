@@ -1,7 +1,6 @@
 #pragma once
 #include "raylib.h"
 
-
 const int maxBullets = 20;
 
 namespace Topo

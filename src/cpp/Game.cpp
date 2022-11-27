@@ -106,7 +106,7 @@ namespace Topo
 
 	void Game::draw()
 	{
-		int titleLenght = MeasureText("Moon Patrol", static_cast <int>(10 * map->getUnit()));
+		int titleLenght = MeasureText("Minimalist Patrol", static_cast <int>(10 * map->getUnit()));
 		int creditsLenght = MeasureText("Topo Fabbri and Godoy Tobias", static_cast <int>(5 * map->getUnit()));
 		int playLenght = MeasureText("Play", static_cast <int>(5 * map->getUnit()));
 		int creditLenght = MeasureText("Credits", static_cast <int>(5 * map->getUnit()));
@@ -137,7 +137,7 @@ namespace Topo
 
 
 
-			DrawText("Moon patrol",GetScreenWidth() / 2 - titleLenght / 2, static_cast<int>(GetScreenHeight() / 5.5), static_cast <int>(10 * map->getUnit()), RED);
+			DrawText("Minimalist patrol",GetScreenWidth() / 2 - titleLenght / 2, static_cast<int>(GetScreenHeight() / 5.5), static_cast <int>(10 * map->getUnit()), RED);
 			DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, 15 * map->getUnit(), RED);
 			DrawCircleLines(GetScreenWidth() / 2, static_cast<int>(GetScreenHeight() / 1.3), 15 * map->getUnit(), BLUE);
 			DrawCircleLines(static_cast<int>(GetScreenWidth() / 3), static_cast<int>(GetScreenHeight() / 1.57), 15 * map->getUnit(), ORANGE);

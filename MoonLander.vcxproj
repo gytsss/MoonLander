@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="src\cpp\Background.cpp" />
     <ClCompile Include="src\cpp\Bullets.cpp" />
     <ClCompile Include="src\cpp\Character.cpp" />
@@ -30,6 +29,7 @@
     <ClCompile Include="src\cpp\Obstacle.cpp" />
     <ClCompile Include="src\cpp\Parallax.cpp" />
     <ClCompile Include="src\cpp\Topo.cpp" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\header\Background.h" />
