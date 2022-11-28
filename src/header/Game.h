@@ -13,6 +13,7 @@ namespace Topo
 
 	private:
 		bool isPlaying;
+		bool isMultiplayer;
 
 		Map* map;
 		Scenes scenes;

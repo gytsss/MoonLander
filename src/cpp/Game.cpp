@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <iostream>
 
 namespace Topo
 {
@@ -20,7 +21,10 @@ namespace Topo
 		{
 			if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) }, 15 * map->getUnit()) &&
 				IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+			{
 				scenes = Scenes::Play;
+				isMultiplayer = false;
+			}
 			else if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 1.3) }, 15 * map->getUnit()) &&
 				IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
 				scenes = Scenes::Credits;
@@ -30,8 +34,9 @@ namespace Topo
 			else if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 1.5), static_cast<float>(GetScreenHeight() / 1.57) }, 15 * map->getUnit()) &&
 				IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
 			{
-				map->setMultiplayer(true);
+ 				map->setMultiplayer(true);
 				scenes = Scenes::Play;
+				isMultiplayer = true;
 			}
 			else if (scenes == Scenes::Credits && IsKeyPressed(KEY_SPACE))
 				scenes = Scenes::MainMenu;
@@ -82,6 +87,7 @@ namespace Topo
 	void Game::begin()
 	{
 		isPlaying = true;
+		map->setIsFinished(false);
 	}
 
 	void Game::update()
@@ -89,16 +95,19 @@ namespace Topo
 		if (map->getIsFinished())
 		{
 			isPlaying = false;
-			if (IsKeyPressed(KEY_ENTER))
-			{
-				scenes = Scenes::MainMenu;
+			
+			delete map;
+			map = new Map();
 
-				delete map;
-				map = new Map();
+			if (isMultiplayer)
+			{
+				map->setMultiplayer(isMultiplayer);
 			}
+
 		}
 		else
 		{
+
 			map->update(scenes);
 		}
 
@@ -112,6 +121,8 @@ namespace Topo
 		int creditLenght = MeasureText("Credits", static_cast <int>(5 * map->getUnit()));
 		int exitLenght = MeasureText("Exit", static_cast <int>(5 * map->getUnit()));
 		int multiplayerLenght = MeasureText("Multiplayer", static_cast <int>(5 * map->getUnit()));
+
+
 
 		switch (scenes)
 		{
@@ -137,7 +148,7 @@ namespace Topo
 
 
 
-			DrawText("Minimalist patrol",GetScreenWidth() / 2 - titleLenght / 2, static_cast<int>(GetScreenHeight() / 5.5), static_cast <int>(10 * map->getUnit()), RED);
+			DrawText("Minimalist patrol", GetScreenWidth() / 2 - titleLenght / 2, static_cast<int>(GetScreenHeight() / 5.5), static_cast <int>(10 * map->getUnit()), RED);
 			DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, 15 * map->getUnit(), RED);
 			DrawCircleLines(GetScreenWidth() / 2, static_cast<int>(GetScreenHeight() / 1.3), 15 * map->getUnit(), BLUE);
 			DrawCircleLines(static_cast<int>(GetScreenWidth() / 3), static_cast<int>(GetScreenHeight() / 1.57), 15 * map->getUnit(), ORANGE);
@@ -157,7 +168,7 @@ namespace Topo
 
 			DrawText("Topo Fabbri and Godoy Tobias", GetScreenWidth() / 2 - creditsLenght / 2, GetScreenHeight() / 2, static_cast <int>(5 * map->getUnit()), RED);
 			DrawText("<- (Space)", 10, static_cast<int>(GetScreenHeight() / 1.1), static_cast <int>(5 * map->getUnit()), RED);
-			
+
 
 			EndDrawing();
 			break;

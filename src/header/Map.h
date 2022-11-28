@@ -41,13 +41,16 @@ namespace Topo
 		float getWidth();
 		float getUnit();
 		bool getIsFinished();
+		bool getIsRunning();
+		bool getmulti();
 
-		void update(Scenes activeScene);
+		void update(Scenes& activeScene);
 		void draw();
 
 		void input();
 
 		void checkCollisions();
 		void setMultiplayer(bool areTwoPlayers);
+		void setIsFinished(bool finish);
 	};
 }
