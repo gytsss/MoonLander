@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Topo.h"
-#include "Character.h"
-#include "Obstacle.h"
-#include "Background.h"
-#include "Clouds.h"
-#include "Bullets.h"
-#include "FlyEnemy.h"
-#include "Enums.h"
+#include "extras/Topo.h"
+#include "objects/Character.h"
+#include "objects/Obstacle.h"
+#include "objects/Background.h"
+#include "objects/Clouds.h"
+#include "objects/Bullets.h"
+#include "objects/FlyEnemy.h"
+#include "extras/Enums.h"
 
 
 namespace Topo

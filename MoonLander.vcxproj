@@ -19,30 +19,30 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp\Background.cpp" />
-    <ClCompile Include="src\cpp\Bullets.cpp" />
-    <ClCompile Include="src\cpp\Character.cpp" />
-    <ClCompile Include="src\cpp\Clouds.cpp" />
-    <ClCompile Include="src\cpp\FlyEnemy.cpp" />
-    <ClCompile Include="src\cpp\Game.cpp" />
-    <ClCompile Include="src\cpp\Map.cpp" />
-    <ClCompile Include="src\cpp\Obstacle.cpp" />
-    <ClCompile Include="src\cpp\Parallax.cpp" />
-    <ClCompile Include="src\cpp\Topo.cpp" />
+    <ClCompile Include="src\extras\Topo.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\objects\Background.cpp" />
+    <ClCompile Include="src\objects\Bullets.cpp" />
+    <ClCompile Include="src\objects\Character.cpp" />
+    <ClCompile Include="src\objects\Clouds.cpp" />
+    <ClCompile Include="src\objects\FlyEnemy.cpp" />
+    <ClCompile Include="src\objects\Obstacle.cpp" />
+    <ClCompile Include="src\objects\Parallax.cpp" />
+    <ClCompile Include="src\screens\Game.cpp" />
+    <ClCompile Include="src\screens\Map.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\header\Background.h" />
-    <ClInclude Include="src\header\Bullets.h" />
-    <ClInclude Include="src\header\Character.h" />
-    <ClInclude Include="src\header\Clouds.h" />
-    <ClInclude Include="src\header\Enums.h" />
-    <ClInclude Include="src\header\FlyEnemy.h" />
-    <ClInclude Include="src\header\Game.h" />
-    <ClInclude Include="src\header\Map.h" />
-    <ClInclude Include="src\header\Obstacle.h" />
-    <ClInclude Include="src\header\Parallax.h" />
-    <ClInclude Include="src\header\Topo.h" />
+    <ClInclude Include="src\extras\Enums.h" />
+    <ClInclude Include="src\extras\Topo.h" />
+    <ClInclude Include="src\objects\Background.h" />
+    <ClInclude Include="src\objects\Bullets.h" />
+    <ClInclude Include="src\objects\Character.h" />
+    <ClInclude Include="src\objects\Clouds.h" />
+    <ClInclude Include="src\objects\FlyEnemy.h" />
+    <ClInclude Include="src\objects\Obstacle.h" />
+    <ClInclude Include="src\objects\Parallax.h" />
+    <ClInclude Include="src\screens\Game.h" />
+    <ClInclude Include="src\screens\Map.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -118,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\raylib-4.0.0_win32_msvc16\include;$(SolutionDir)src\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\raylib-4.0.0_win32_msvc16\include;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -139,7 +139,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\raylib-4.0.0_win32_msvc16\include;$(SolutionDir)src\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\raylib-4.0.0_win32_msvc16\include;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>

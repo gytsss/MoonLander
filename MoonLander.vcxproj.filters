@@ -13,72 +13,81 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="objects">
+      <UniqueIdentifier>{a5e146f8-3ff2-450b-b775-600067c74184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="screens">
+      <UniqueIdentifier>{750d5f65-83e4-4813-80b9-67262fda35c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="extras">
+      <UniqueIdentifier>{9fe08a66-e39b-4265-8590-a686bab2e9fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp\Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\Topo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\Map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\Obstacle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\Parallax.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\Background.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\Clouds.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\Bullets.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\FlyEnemy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\extras\Topo.cpp">
+      <Filter>extras</Filter>
+    </ClCompile>
+    <ClCompile Include="src\screens\Game.cpp">
+      <Filter>screens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\screens\Map.cpp">
+      <Filter>screens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\Background.cpp">
+      <Filter>objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\Bullets.cpp">
+      <Filter>objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\Character.cpp">
+      <Filter>objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\Clouds.cpp">
+      <Filter>objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\FlyEnemy.cpp">
+      <Filter>objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\Obstacle.cpp">
+      <Filter>objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\Parallax.cpp">
+      <Filter>objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\header\Game.h">
+    <ClInclude Include="src\objects\Background.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\Topo.h">
+    <ClInclude Include="src\objects\Bullets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\Map.h">
+    <ClInclude Include="src\objects\Character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\Character.h">
+    <ClInclude Include="src\objects\Clouds.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\Obstacle.h">
+    <ClInclude Include="src\extras\Enums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\Parallax.h">
+    <ClInclude Include="src\screens\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\Background.h">
+    <ClInclude Include="src\screens\Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\Clouds.h">
+    <ClInclude Include="src\objects\Obstacle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\Bullets.h">
+    <ClInclude Include="src\objects\FlyEnemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\FlyEnemy.h">
+    <ClInclude Include="src\objects\Parallax.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\Enums.h">
+    <ClInclude Include="src\extras\Topo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

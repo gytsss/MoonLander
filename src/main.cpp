@@ -1,7 +1,7 @@
 #include <iostream>
 
 
-#include "Game.h"
+#include "screens/Game.h"
 
 
 int main()
