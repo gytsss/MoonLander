@@ -210,7 +210,7 @@ namespace Topo
 	{
 		srand(static_cast<unsigned int>(time(nullptr)));
 		SetWindowState(FLAG_WINDOW_RESIZABLE);
-		InitWindow(1280, 1000, "Minimalist Patrol 1.0");
+		InitWindow(1280, 1000, "Minimalist Patrol 1.1");
 		SetTargetFPS(60);
 	}
 }
