@@ -97,12 +97,8 @@ namespace Topo
 
 	void Game::draw()
 	{
-		int titleLenght = MeasureText("Minimalist Patrol", static_cast <int>(10 * map->getUnit()));
+		
 		int creditsLenght = MeasureText("Topo Fabbri and Godoy Tobias", static_cast <int>(5 * map->getUnit()));
-		int playLenght = MeasureText("Play", static_cast <int>(5 * map->getUnit()));
-		int creditLenght = MeasureText("Credits", static_cast <int>(5 * map->getUnit()));
-		int exitLenght = MeasureText("Exit", static_cast <int>(5 * map->getUnit()));
-		int multiplayerLenght = MeasureText("Multiplayer", static_cast <int>(5 * map->getUnit()));
 
 
 
@@ -129,18 +125,8 @@ namespace Topo
 			ClearBackground(BLACK);
 
 
-
-			DrawText("Minimalist patrol", GetScreenWidth() / 2 - titleLenght / 2, static_cast<int>(GetScreenHeight() / 5.5), static_cast <int>(10 * map->getUnit()), RED);
-			DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, 15 * map->getUnit(), RED);
-			DrawCircleLines(GetScreenWidth() / 2, static_cast<int>(GetScreenHeight() / 1.3), 15 * map->getUnit(), BLUE);
-			DrawCircleLines(static_cast<int>(GetScreenWidth() / 3), static_cast<int>(GetScreenHeight() / 1.57), 15 * map->getUnit(), ORANGE);
-			DrawCircleLines(static_cast<int>(GetScreenWidth() / 1.5), static_cast<int>(GetScreenHeight() / 1.57), 15 * map->getUnit(), GREEN);
-
-			DrawText("Play", GetScreenWidth() / 2 - playLenght / 2, static_cast<int>(GetScreenHeight() / 2.1), static_cast <int>(5 * map->getUnit()), RED);
-			DrawText("Credits", GetScreenWidth() / 2 - creditLenght / 2, static_cast<int>(GetScreenHeight() / 1.35), static_cast <int>(5 * map->getUnit()), BLUE);
-			DrawText("Exit", GetScreenWidth() / 3 - exitLenght / 2, static_cast<int>(GetScreenHeight() / 1.62), static_cast <int>(5 * map->getUnit()), ORANGE);
-			DrawText("Multiplayer", static_cast<int>(GetScreenWidth() / 1.5 - multiplayerLenght / 2), static_cast<int>(GetScreenHeight() / 1.62), static_cast <int>(5 * map->getUnit()), GREEN);
-
+			drawMenu();
+			
 			EndDrawing();
 			break;
 
@@ -163,6 +149,27 @@ namespace Topo
 
 
 
+
+	}
+
+	void Game::drawMenu()
+	{
+		int titleLenght = MeasureText("Minimalist Patrol", static_cast <int>(10 * map->getUnit()));
+		int playLenght = MeasureText("Play", static_cast <int>(5 * map->getUnit()));
+		int creditLenght = MeasureText("Credits", static_cast <int>(5 * map->getUnit()));
+		int exitLenght = MeasureText("Exit", static_cast <int>(5 * map->getUnit()));
+		int multiplayerLenght = MeasureText("Multiplayer", static_cast <int>(5 * map->getUnit()));
+
+		DrawText("Minimalist patrol", GetScreenWidth() / 2 - titleLenght / 2, static_cast<int>(GetScreenHeight() / 5.5), static_cast <int>(10 * map->getUnit()), RED);
+		DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, 15 * map->getUnit(), RED);
+		DrawCircleLines(GetScreenWidth() / 2, static_cast<int>(GetScreenHeight() / 1.3), 15 * map->getUnit(), BLUE);
+		DrawCircleLines(static_cast<int>(GetScreenWidth() / 3), static_cast<int>(GetScreenHeight() / 1.57), 15 * map->getUnit(), ORANGE);
+		DrawCircleLines(static_cast<int>(GetScreenWidth() / 1.5), static_cast<int>(GetScreenHeight() / 1.57), 15 * map->getUnit(), GREEN);
+
+		DrawText("Play", GetScreenWidth() / 2 - playLenght / 2, static_cast<int>(GetScreenHeight() / 2.1), static_cast <int>(5 * map->getUnit()), RED);
+		DrawText("Credits", GetScreenWidth() / 2 - creditLenght / 2, static_cast<int>(GetScreenHeight() / 1.35), static_cast <int>(5 * map->getUnit()), BLUE);
+		DrawText("Exit", GetScreenWidth() / 3 - exitLenght / 2, static_cast<int>(GetScreenHeight() / 1.62), static_cast <int>(5 * map->getUnit()), ORANGE);
+		DrawText("Multiplayer", static_cast<int>(GetScreenWidth() / 1.5 - multiplayerLenght / 2), static_cast<int>(GetScreenHeight() / 1.62), static_cast <int>(5 * map->getUnit()), GREEN);
 
 	}
 

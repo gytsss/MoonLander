@@ -30,6 +30,7 @@ namespace Topo
 		void begin();
 		void update();
 		void draw();
+		void drawMenu();
 		void input();
 	};
 
