@@ -77,7 +77,7 @@ namespace Topo
 		if (map->getIsFinished())
 		{
 			isPlaying = false;
-			
+
 			delete map;
 			map = new Map();
 
@@ -197,7 +197,6 @@ namespace Topo
 	}
 
 
-}
 
 	void runProgram()
 	{
@@ -214,3 +213,4 @@ namespace Topo
 		InitWindow(1280, 1000, "Minimalist Patrol 1.0");
 		SetTargetFPS(60);
 	}
+}

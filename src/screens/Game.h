@@ -34,6 +34,6 @@ namespace Topo
 	};
 
 
-}
 	void defaults();
 	void runProgram();
+}

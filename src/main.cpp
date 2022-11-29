@@ -6,7 +6,7 @@
 
 int main()
 {
-	runProgram();
+	Topo::runProgram();
 	return 0;
 }
 
