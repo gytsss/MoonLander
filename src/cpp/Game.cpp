@@ -1,5 +1,7 @@
 #include "Game.h"
-#include <iostream>
+#include <ctime>
+
+
 
 namespace Topo
 {
@@ -17,6 +19,7 @@ namespace Topo
 
 	void Game::loop()
 	{
+
 		do
 		{
 			if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) }, 15 * map->getUnit()) &&
@@ -188,5 +191,22 @@ namespace Topo
 	{
 		draw();
 	}
+
+
 }
 
+	void runProgram()
+	{
+		defaults();
+		Topo::Game* game = new Topo::Game();
+		game->loop();
+		delete game;
+	}
+
+	void defaults()
+	{
+		srand(static_cast<unsigned int>(time(nullptr)));
+		SetWindowState(FLAG_WINDOW_RESIZABLE);
+		InitWindow(1280, 1000, "Minimalist Patrol 1.0");
+		SetTargetFPS(60);
+	}

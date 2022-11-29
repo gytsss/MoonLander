@@ -31,4 +31,8 @@ namespace Topo
 		void update();
 		void draw();
 	};
+
+
 }
+	void defaults();
+	void runProgram();
