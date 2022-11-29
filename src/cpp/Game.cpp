@@ -2,7 +2,6 @@
 #include <ctime>
 
 
-
 namespace Topo
 {
 	Game::Game()
@@ -22,27 +21,7 @@ namespace Topo
 
 		do
 		{
-			if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) }, 15 * map->getUnit()) &&
-				IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
-			{
-				scenes = Scenes::Play;
-				isMultiplayer = false;
-			}
-			else if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 1.3) }, 15 * map->getUnit()) &&
-				IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
-				scenes = Scenes::Credits;
-			else if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 3), static_cast<float>(GetScreenHeight() / 1.57) }, 15 * map->getUnit()) &&
-				IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
-				scenes = Scenes::Exit;
-			else if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 1.5), static_cast<float>(GetScreenHeight() / 1.57) }, 15 * map->getUnit()) &&
-				IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
-			{
- 				map->setMultiplayer(true);
-				scenes = Scenes::Play;
-				isMultiplayer = true;
-			}
-			else if (scenes == Scenes::Credits && IsKeyPressed(KEY_SPACE))
-				scenes = Scenes::MainMenu;
+			input();
 
 			switch (scenes)
 			{
@@ -185,6 +164,31 @@ namespace Topo
 
 
 
+	}
+
+	void Game::input()
+	{
+		if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 2) }, 15 * map->getUnit()) &&
+			IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+		{
+			scenes = Scenes::Play;
+			isMultiplayer = false;
+		}
+		else if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 1.3) }, 15 * map->getUnit()) &&
+			IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+			scenes = Scenes::Credits;
+		else if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 3), static_cast<float>(GetScreenHeight() / 1.57) }, 15 * map->getUnit()) &&
+			IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+			scenes = Scenes::Exit;
+		else if (scenes == Scenes::MainMenu && CheckCollisionPointCircle(GetMousePosition(), Vector2{ static_cast<float>(GetScreenWidth() / 1.5), static_cast<float>(GetScreenHeight() / 1.57) }, 15 * map->getUnit()) &&
+			IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+		{
+			map->setMultiplayer(true);
+			scenes = Scenes::Play;
+			isMultiplayer = true;
+		}
+		else if (scenes == Scenes::Credits && IsKeyPressed(KEY_SPACE))
+			scenes = Scenes::MainMenu;
 	}
 
 	void Game::credits()
