@@ -171,8 +171,8 @@ namespace Topo
 	{
 		int scoreLength = MeasureText(TextFormat("&i", player->getScore()), static_cast<int>(50 * unit));
 		int backMenuLength = MeasureText("Back to menu (Enter)", static_cast<int>(8 * unit));
-		int howTPLength = MeasureText("Left click to shoot - W to jump", static_cast<int>(5 * unit));
-		int howTPLength2 = MeasureText("P2: K to shoot - J to jump (Black)", static_cast<int>(5 * unit));
+		int howTPLength = MeasureText("D to shoot - W to jump", static_cast<int>(5 * unit));
+		int howTPLength2 = MeasureText("P2: Key left to shoot - Key up to jump (Black)", static_cast<int>(5 * unit));
 		int enterLength = MeasureText("Space to play", static_cast<int>(8 * unit));
 
 		if (player->getIsAlive() && secondPlayer->getIsAlive())
@@ -195,12 +195,12 @@ namespace Topo
 			{
 				if (isMultiplayer)
 				{
-					DrawText("P1: Left click to shoot - W to jump", GetScreenWidth() / 2 - howTPLength / 2, static_cast<int>(GetScreenHeight() / 6.5), static_cast<int>(5 * unit), BLACK);
-					DrawText("P2: K to shoot - Key up to jump (Black)", GetScreenWidth() / 2 - howTPLength2 / 2, static_cast<int>(GetScreenHeight() / 5), static_cast<int>(5 * unit), BLACK);
+					DrawText("P1: D to shoot - W to jump", GetScreenWidth() / 2 - howTPLength / 2, static_cast<int>(GetScreenHeight() / 6.5), static_cast<int>(5 * unit), BLACK);
+					DrawText("P2: Key left to shoot - Key up to jump (Black)", GetScreenWidth() / 2 - howTPLength2 / 2, static_cast<int>(GetScreenHeight() / 5), static_cast<int>(5 * unit), BLACK);
 				}
 				else
 				{
-					DrawText("Left click to shoot - W to jump", GetScreenWidth() / 2 - howTPLength / 2, static_cast<int>(GetScreenHeight() / 6.5), static_cast<int>(5 * unit), BLACK);
+					DrawText("D to shoot - W to jump", GetScreenWidth() / 2 - howTPLength / 2, static_cast<int>(GetScreenHeight() / 6.5), static_cast<int>(5 * unit), BLACK);
 				}
 
 				DrawText("Space to play", GetScreenWidth() / 2 - enterLength / 2, static_cast<int>(GetScreenHeight() / 1.5), static_cast<int>(8 * unit), BLACK);
@@ -229,7 +229,7 @@ namespace Topo
 		if (IsKeyPressed(KEY_W))
 			player->jump(unit);
 
-		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		if (IsKeyPressed(KEY_D))
 			player->shoot();
 
 		if (isMultiplayer)
@@ -237,7 +237,7 @@ namespace Topo
 			if (IsKeyPressed(KEY_UP))
 				secondPlayer->jump(unit);
 
-			if (IsKeyPressed(KEY_K))
+			if (IsKeyPressed(KEY_LEFT))
 				secondPlayer->shoot();
 		}
 
